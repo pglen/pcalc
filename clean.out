@@ -1,2 +1,0 @@
-test -z "pcalc" || rm -f pcalc
-rm -f *.o core *.core

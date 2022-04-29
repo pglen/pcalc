@@ -1,9 +1,10 @@
-#                Programmer's Calculator
+#                Programmer's Calculator  (Ver 1.3)
 
 ##  Arithmetic in base 16, base 10, base 2 (hex, dec, bin)
 
  Resurrected this because it may be useful. For instance, in embedded programming it
- is nice to see results from mixed operations from stuff like '0xf800+27'.
+is nice to see results from mixed operations, - for example - like '0xA0000+27*2'.
+(The address of 27th char in the framebuffer)
 
  For some, it may  serve as a good introduction to LEX/YACC.
 
@@ -15,7 +16,7 @@ enough to maintain a nice farm. Would be ice to have a side/guest house there to
 
 ## Tech:
 
-      Operators. Precedence like in 'C'
+      Operators line in most languages. Precedence like in 'C'.
 
  Operator summary:
 
@@ -56,7 +57,9 @@ Type pcalc with no arguments for help summary.
 See the file INSTALL for building and installation instructions.
 (the usual configure / make )
 
-pcalc is free software.
+## Copyright
+
+   pcalc is free software.
 
 ## Command line usage summary
 
@@ -64,7 +67,8 @@ pcalc is free software.
 command line is not delivering to pcalc what you expect, you may
 enclose the command in quotes; For instance the string 2 / 3 is
 parsed into three arguments, so using "2 / 3" delivers what you
-intended. The string 2/3 is interpreted as you intended.
+intended. As a side note, the string 2/3 is interpreted as
+you intended.
 
 Peter Glen
 

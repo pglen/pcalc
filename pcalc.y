@@ -2,8 +2,10 @@
 
   /* =====[ PCALC.C ]=========================================================
 
-     Description: Programmers calculator.
-
+     Description:       Programmers calculator. Wow; Decades old.
+                        Re-worked it a little  :-) Compiles on Ubuntu 20.x +
+                        It was a hobby project, but now it is used in several
+                        commercial products.
      Revisions:
 
      REV     DATE           BY           DESCRIPTION

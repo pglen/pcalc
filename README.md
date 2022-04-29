@@ -19,27 +19,29 @@ enough to maintain a nice farm. Would be ice to have a side/guest house there to
 
  Operator summary:
 
-      right  assotiation:     '='         ASSIGNMENT\n\
-      left   assotiation:     or  and     BINARY OR/BINARY AND\n\
-      left   assotiation:     '+' '-'     ADDITION/SUBTRUCTION\n\
-      left   assotiation:     '*' '/' '%' MULTIPLY/DIVIDE/MODULUS\n\
-      left   assotiation:     '-'         UNARY MINUS\n\
-      right  assotiation:     '^'         EXPONENTATION\n\
+        right  assotiation:     '='         ASSIGNMENT\n\
+        left   assotiation:     or  and     BINARY OR/BINARY AND\n\
+        left   assotiation:     '+' '-'     ADDITION/SUBTRUCTION\n\
+        left   assotiation:     '*' '/' '%' MULTIPLY/DIVIDE/MODULUS\n\
+        left   assotiation:     '-'         UNARY MINUS\n\
+        right  assotiation:     '^'         EXPONENTATION\n\
+
+ Math functions summary:
+
+        SIN         math sinus              COS        math cos
+        ATAN        math atan               LOG        math log
+        LOG10       math log10              EXP        math exp
+        SQRT        math sqrt               INT        math int
+        ABS         math abs
 
  Function summary:
 
-      SIN         math sinus              COS        math cos
-      ATAN        math atan               LOG        math log
-      LOG10       math log10              EXP        math exp
-      SQRT        math sqrt               INT        math int
-      ABS         math abs
-
-      F2C         converting temperature -> fahrenheit to celsius
-      C2F         converting temperature -> celsius to fahrenheit
-      IN2MM       converting length      -> inches to millimeter
-      MM2IN       converting length      -> millimeter to inches
-      PO2KG       converting mass        -> pounds to kilogram
-      KG2PO       converting mass        -> kilogram to pounds
+        F2C         converting temperature -> fahrenheit to celsius
+        C2F         converting temperature -> celsius to fahrenheit
+        IN2MM       converting length      -> inches to millimeter
+        MM2IN       converting length      -> millimeter to inches
+        PO2KG       converting mass        -> pounds to kilogram
+        KG2PO       converting mass        -> kilogram to pounds
 
  Constans summary:
 
@@ -49,7 +51,7 @@ enough to maintain a nice farm. Would be ice to have a side/guest house there to
         DEG     57.29577951308322087680
         PHI     1.61803389974989484820
 
-Type pcalc with no arguments for help.
+Type pcalc with no arguments for help summary.
 
 See the file INSTALL for building and installation instructions.
 (the usual configure / make )

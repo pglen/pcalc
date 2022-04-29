@@ -6,16 +6,16 @@
 
      Revisions:
 
-     REV     DATE       BY           DESCRIPTION
-     ----  --------     ----------    --------------------------------------
-     0.00  xx.xx.94     Peter Glen    Initial version.
-     0.00  08/28/98     Peter Glen    Command line rework
-     0.00  08/28/98     Peter Glen    Date added.
-     0.00  08/21/98     Peter Glen    Unix port.
-     0.00  nov/26/2019  Peter Glen    Added on Github
+     REV     DATE           BY           DESCRIPTION
+     ----  --------         ----------    --------------------------------
+     0.00  xx.xx.94         Peter Glen    Initial version.
+     0.00  08/28/98         Peter Glen    Command line rework
+     0.00  08/28/98         Peter Glen    Date added.
+     0.00  08/21/98         Peter Glen    Unix port.
+     0.00  nov/26/2019      Peter Glen    Added on Github
+     0.00  Fri 29.Apr.2022  Peter Glen    Recompiled for '%' operator
 
      ======================================================================= */
-
 
   /* -------- System includes:  -------------------------------------------- */
 
@@ -42,7 +42,7 @@ static int     parse_comline(int argc, char *argv[]);
 
   extern  FILE * yyin ;
 
-  char    work_str[128];
+  static    char    work_str[128];
 
   %}
 
@@ -152,6 +152,7 @@ int     len;
 char    buff[512];
 
 FILE    *in_fp;
+char *version = "1.3";
 
 int     main(int argc, char *argv[])
 
@@ -165,7 +166,7 @@ int     main(int argc, char *argv[])
 
     if(!argv[1])
         {
-        printf ("\nProgrammer's calculator by Peter Glen. Version 1.0\n\n");
+        printf ("\nProgrammer's calculator by Peter Glen. Version %s\n\n", version);
         help_help();
         exit(0);
         }
@@ -313,7 +314,7 @@ int     parse_comline(int argc, char *argv[])
 
                 case 'v' :
                     printf (
-                "\nProgrammer's calculator by Peter Glen. Version 1.0\n");
+                "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
                     exit(0);
                     break;
 

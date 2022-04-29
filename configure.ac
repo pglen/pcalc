@@ -1,7 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(convert.c)
+AC_INIT(pcalc, 1.3)
 
-AM_INIT_AUTOMAKE(pcalc, 1.0)
+#AM_INIT_AUTOMAKE(pcalc, 1.0)
+AM_INIT_AUTOMAKE()
 
 dnl Checks for programs.
 AC_PROG_YACC

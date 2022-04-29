@@ -1,6 +1,6 @@
 #                Programmer's Calculator
 
-## Command line conversion and arithmetic in base 16, base 10, base 2 (hex, dec, bin)
+##  Arithmetic in base 16, base 10, base 2 (hex, dec, bin)
 
  Resurrected this because it may be useful. For instance, in embedded programming it
  is nice to see results from mixed operations from stuff like '0xf800+27'.

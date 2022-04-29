@@ -6,3 +6,4 @@ git:
 	echo "Updating git"
 	git add .
 	git commit -m "Auto Update"
+	git push

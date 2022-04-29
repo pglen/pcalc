@@ -14,6 +14,7 @@
      0.00  08/21/98         Peter Glen    Unix port.
      0.00  nov/26/2019      Peter Glen    Added on Github
      0.00  Fri 29.Apr.2022  Peter Glen    Recompiled for '%' operator
+     0.00  Fri 29.Apr.2022  Peter Glen    Added temp dir escape
 
      ======================================================================= */
 
@@ -65,7 +66,7 @@ static int     parse_comline(int argc, char *argv[]);
 %right  '='
 %left   '|' '&'
 %left   '+' '-'
-%left   '*' '/'
+%left   '*' '/' '%'
 %left   UNARYMINUS
 %right  '^'                                             /*  exponentiation */
 
@@ -118,6 +119,7 @@ expr: 		NUMBER
         |   expr '+' expr           { $$ = $1 + $3 ; }
         |   expr '-' expr           { $$ = $1 - $3 ; }
         |   expr '*' expr           { $$ = $1 * $3 ; }
+        |   expr '%' expr           { $$ = (long)$1 % (long)$3 ; }
         |   expr '/' expr           {
                                     if ($3 == 0.0)
                                     execerror("division by zero", "") ;
@@ -153,6 +155,8 @@ char    buff[512];
 
 FILE    *in_fp;
 char *version = "1.3";
+
+static char *tmpfilenm =  "pcalc.tmp";
 
 int     main(int argc, char *argv[])
 
@@ -213,18 +217,26 @@ int     main(int argc, char *argv[])
         //printf("CMDLINE='%s'\n", buff);
 
         len = strlen(buff);
-        yyin = fopen("pcalc.tmp", "w");
-
+        yyin = fopen(tmpfilenm, "w");
         if(!yyin)
             {
-            execerror( "cannot create tmp file\n", NULL); exit(0);
+            tmpfilenm = "/tmp/pcalc.tmp";
+            yyin = fopen(tmpfilenm, "w");
+            if(!yyin)
+                {
+                execerror( "cannot create tmp file\n", NULL); exit(0);
+                }
             }
         fwrite(buff, len, 1, yyin);
         fputc('\n', yyin);
-	//fputc(0x1a,  yyin);
+	    //fputc(0x1a,  yyin);
         fclose(yyin);
 
-        yyin = fopen("pcalc.tmp", "r");
+        yyin = fopen(tmpfilenm, "r");
+        if(!yyin)
+            {
+            execerror( "cannot open tmp file\n", NULL); exit(0);
+            }
         comm = 1;
         }
 
@@ -237,7 +249,7 @@ int     main(int argc, char *argv[])
         fclose(yyin);
 
     if(comm)
-        unlink("pcalc.tmp");
+        unlink(tmpfilenm);
 
     return 0 ;
 }

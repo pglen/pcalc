@@ -57,7 +57,6 @@ BUILTINS    builtins[] =
         "po2kg",    po2kg,
         "kg2po",    kg2po,
 
-
         "SIN",      sin,
         "COS",      cos,
         "ATAN",     atan,

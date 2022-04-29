@@ -84,6 +84,7 @@ Operator priorities:\n\
     left   assotiation:     or  and    BINARY OR/BINARY AND\n\
     left   assotiation:     '+' '-'    ADDITION/SUBTRUCTION\n\
     left   assotiation:     '*' '/'    MULTIPLY/DIVIDE\n\
+    left   assotiation:     '%%'        MODULUS (Integer)\n\
     left   assotiation:     '-'        UNARY MINUS\n\
     right  assotiation:     '^'        EXPONENTATION\n\
 \n\

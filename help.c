@@ -48,18 +48,29 @@ Constants: (case sensitive)\n\
     help_help();
 }
 
-int     funchelp(void)
+int     math_help(void)
 
 {
         printf("\
 \n\
-Functions: (case insensitive)\n\
+Math Functions: (case insensitive)\n\
 \n\
     SIN         math sinus              COS        math cos   \n\
     ATAN        math atan               LOG        math log   \n\
     LOG10       math log10              EXP        math exp   \n\
     SQRT        math sqrt               INT        math int   \n\
     ABS         math abs                                      \n\
+\n\
+");
+
+}
+
+int     funchelp(void)
+
+{
+        printf("\
+\n\
+Functions: (case insensitive)\n\
 \n\
     F2C         converting temperature -> fahrenheit to celsius \n\
     C2F         converting temperature -> celsius to fahrenheit \n\

@@ -45,6 +45,7 @@
 /* -------- Protos ------------------------------------------------------- */
 
 int     basehelp(void);
+int     math_help(void);
 int     funchelp(void);
 int     ophelp(void);
 int     conshelp(void);

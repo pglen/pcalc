@@ -167,7 +167,6 @@ int     main(int argc, char *argv[])
     char    *env;
 
     args = parse_comline(argc, argv);
-
     progname = argv[0];
 
     if(!argv[1])
@@ -178,7 +177,7 @@ int     main(int argc, char *argv[])
         }
     if(*argv[1] == 'f' && argv[1][1] == '\0')
         {
-        funchelp();  exit(0);
+        funchelp();  math_help(); exit(0);
         }
     if(*argv[1] == 'l' && argv[1][1] == '\0')
         {
@@ -196,26 +195,22 @@ int     main(int argc, char *argv[])
     if(*argv[1] == '@' )
         {
         // we got file:
-
         yyin = fopen(&argv[1][1], "rt");
         if(!yyin)
             {
-            printf("Cannot find file.\n");
+            printf("Cannot open / find file.\n");
             exit(0);
             }
         }
     else
         {
         // we got command line, write to a file, fake file:
-
         char    *commandline;
         int     len, cnt;
-
         for(cnt = args+1; cnt < argc; cnt++)
             {
             strcat(buff, argv[cnt]); strcat(buff, " ");
             }
-
         //printf("CMDLINE='%s'\n", buff);
 
         len = strlen(buff);
@@ -314,14 +309,20 @@ int     parse_comline(int argc, char *argv[])
             {
             switch(argv[i][1])
                 {
-                case 'S' :          /* quiet mode */
-                case 's' :
-                    fSilent = 1;
-                    j++;
+                case 'H' :          /* help */
+                case 'h' :
+                    printf("\nPCALC written by Peter Glen\n");
+                    printf("use: pcalc [options] [argstr [...]]\n");
+                    printf("     options: -s silent  -h help  -v version\n");
+                    printf("     args:    \"items to calculate\"\n");
+
+                    //ophelp();
+                    funchelp();
+                    exit(0);
                     break;
 
-                case 'B' :
-                case 'b' :
+                case 'S' :          /* quiet mode */
+                case 's' :
                     fSilent = 1;
                     j++;
                     break;

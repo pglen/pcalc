@@ -1,20 +1,21 @@
-##                Programmer's Calculator
+#                Programmer's Calculator
 
-# Command line conversion and arithmetic in base 16, base 10, base 2 (hex, dec, bin)
+## Command line conversion and arithmetic in base 16, base 10, base 2 (hex, dec, bin)
 
- Resurrected this because it may be useful, and it can serve as a good introduction
-to LEX/YACC. Also, in embedded programming it is nice to see results from mixed operations
-from stuff like '0xf800+27'.
+ Resurrected this because it may be useful. For instance, in embedded programming it
+ is nice to see results from mixed operations from stuff like '0xf800+27'.
+
+ For some, it may  serve as a good introduction to LEX/YACC.
 
  Came to learn, that this code was used in several commercial products, which
 I welcome with open arms, even if no credit was given. Glad I could make an impact.
 
-  I even got to find out that one of the products - based upon this code - is successful
+  I got to find out that one of the products - based upon this code - is successful
 enough to maintain a nice farm. Would be ice to have a side/guest house there to visit.
 
- ##Tech:
+## Tech:
 
-  Operator precedence like in 'C'
+      Operators. Precedence like in 'C'
 
  Operator summary:
 
@@ -40,6 +41,14 @@ enough to maintain a nice farm. Would be ice to have a side/guest house there to
       PO2KG       converting mass        -> pounds to kilogram
       KG2PO       converting mass        -> kilogram to pounds
 
+ Constans summary:
+
+        PI      3.14159265358979323846
+        E       2.71828182845904523536
+        GAMMA   0.57721566490153286060
+        DEG     57.29577951308322087680
+        PHI     1.61803389974989484820
+
 Type pcalc with no arguments for help.
 
 See the file INSTALL for building and installation instructions.
@@ -47,7 +56,7 @@ See the file INSTALL for building and installation instructions.
 
 pcalc is free software.
 
-## Command line summary;
+## Command line usage summary
 
  The command line parser pre-parses the strings you pass on. If the
 command line is not delivering to pcalc what you expect, you may

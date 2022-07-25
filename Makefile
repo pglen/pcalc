@@ -179,7 +179,7 @@ am__define_uniq_tagged_files = \
 AM_RECURSIVE_TARGETS = cscope
 am__DIST_COMMON = $(srcdir)/Makefile.in AUTHORS COPYING ChangeLog \
 	INSTALL NEWS README.md compile depcomp install-sh missing \
-	mkinstalldirs pcalc.c pcalc.h pcalcl.c ylwrap
+	mkinstalldirs pcalc.c pcalcl.c ylwrap
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -219,10 +219,8 @@ DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
 ETAGS = etags
 EXEEXT = 
-GREP = /usr/bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -297,7 +295,6 @@ top_builddir = .
 top_srcdir = .
 pcalc_SOURCES = convert.c  help.c str.c funct.c pcalc.y pcalcl.l math.c print.c store.c symbol.c
 pcalc_TEXINFOS = pcalc.texi
-AM_YFLAGS = -t -d -v
 all: all-am
 
 .SUFFIXES:
@@ -377,9 +374,6 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-pcalc.h: pcalc.c
-	@if test ! -f $@; then rm -f pcalc.c; else :; fi
-	@if test ! -f $@; then $(MAKE) $(AM_MAKEFLAGS) pcalc.c; else :; fi
 
 pcalc$(EXEEXT): $(pcalc_OBJECTS) $(pcalc_DEPENDENCIES) $(EXTRA_pcalc_DEPENDENCIES) 
 	@rm -f pcalc$(EXEEXT)
@@ -696,9 +690,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-rm -f pcalc.c
-	-rm -f pcalc.h
 	-rm -f pcalcl.c
-clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
+clean: clean-am
+
+clean-am: clean-binPROGRAMS clean-generic clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
@@ -790,9 +785,9 @@ uninstall-am: uninstall-binPROGRAMS
 
 .PHONY: CTAGS GTAGS TAGS all all-am am--depfiles am--refresh check \
 	check-am clean clean-binPROGRAMS clean-cscope clean-generic \
-	cscope cscopelist-am ctags ctags-am dist dist-all dist-bzip2 \
-	dist-gzip dist-lzip dist-shar dist-tarZ dist-xz dist-zip \
-	dist-zstd distcheck distclean distclean-compile \
+	clean-local cscope cscopelist-am ctags ctags-am dist dist-all \
+	dist-bzip2 dist-gzip dist-lzip dist-shar dist-tarZ dist-xz \
+	dist-zip dist-zstd distcheck distclean distclean-compile \
 	distclean-generic distclean-tags distcleancheck distdir \
 	distuninstallcheck dvi dvi-am html html-am info info-am \
 	install install-am install-binPROGRAMS install-data \
@@ -808,9 +803,16 @@ uninstall-am: uninstall-binPROGRAMS
 .PRECIOUS: Makefile
 
 
-clean:
+#AM_YFLAGS = -t -d -v
+
+.PHONY: test
+
+clean-local:
 	@rm -f *.exe
 	@rm -f *.o
+
+test:
+	@cd ptest; ./check.sh; cd ..
 
 git:
 	echo "Updating git"

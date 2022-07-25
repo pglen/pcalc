@@ -78,10 +78,8 @@ Functions: (case insensitive)\n\
     MM2IN       converting length      -> millimeter to inches\n\
     PO2KG       converting mass        -> pounds to kilogram\n\
     KG2PO       converting mass        -> kilogram to pounds\n\
-\n\
 ");
-    help_help();
-
+    //help_help();
 }
 
 int     ophelp(void)
@@ -89,15 +87,17 @@ int     ophelp(void)
 {
         printf("\
 \n\
-Operator priorities:\n\
+Operators and priorities:\n\
 \n\
     right  assotiation:     '='        ASSIGNMENT\n\
-    left   assotiation:     or  and    BINARY OR/BINARY AND\n\
-    left   assotiation:     '+' '-'    ADDITION/SUBTRUCTION\n\
-    left   assotiation:     '*' '/'    MULTIPLY/DIVIDE\n\
+    left   assotiation:     or  and    BINARY OR / BINARY AND\n\
+    left   assotiation:     '+' '-'    ADDITION / SUBTRUCTION\n\
+    left   assotiation:     '<<' '>>'  SHIFT LEFT / RIGHT (Integer)\n\
+    left   assotiation:     '*' '/'    MULTIPLY / DIVIDE\n\
     left   assotiation:     '%%'        MODULUS (Integer)\n\
     left   assotiation:     '-'        UNARY MINUS\n\
     right  assotiation:     '^'        EXPONENTATION\n\
+    right  assotiation:     '**'       EXPONENTATION\n\
 \n\
 ");
     help_help();

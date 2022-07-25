@@ -1,7 +1,9 @@
 %{
 
 /*
-**  pcalc LEX
+** pcalc LEX
+**
+** Mon 25.Jul.2022 Added yywrap function
 */
 
 #include "ctype.h"
@@ -12,20 +14,20 @@
 #include "pcalc.h"
 #include "convert.h"
 
-extern YYSTYPE yylval;
+//define TEST_PARSE
+#define RET_EACH
+
 extern  int lineno;
+//extern YYSTYPE yylval;
 
 /* default yywrap function - always treat EOF as an EOF */
-#define yywrap() 1
-
+int yywrap(void) {
+    return 1;
+}
 
 char    *name;
 int     nchar, nword, nline ;
-
-int     count(void);
-
-//define TEST
-#define RET_EACH
+static  int     count(void);
 
 %}
 
@@ -85,7 +87,7 @@ int     count(void);
                                 }
 
 0x[0-9a-fA-F]+[0-9a-fA-F]* {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Hexadec: [ %s ]\n", yytext);
                                 #endif
 
@@ -97,7 +99,7 @@ int     count(void);
                                 }
 
 0y[01]+[01]*                   {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Binary:  [ %s ]\n", yytext);
                                 #endif
 
@@ -109,7 +111,7 @@ int     count(void);
                                 }
 
 0c[0-7]+[0-7]*                 {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Octal:   [ %s ]\n", yytext);
                                 #endif
 
@@ -121,7 +123,7 @@ int     count(void);
                                 }
 
 [0-9]+[0-9]*                   {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Decimal: [ %s ]\n", yytext);
                                 #endif
 
@@ -137,7 +139,7 @@ int     count(void);
 [0-9]+[dDeE][+-]?[0-9]+ |
 [0-9]+"."[0-9]*[dDeE][+-]?[0-9]+ |
 "."[0-9]+[dDeE][+-]?[0-9]+     {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Decimal: [ %s ]\n", yytext);
                                 #endif
 
@@ -151,7 +153,7 @@ int     count(void);
 \".*\"                          {
                                 Symbol *sp;
 
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" string: [ %s ]\n", yytext);
                                 #endif
 
@@ -180,7 +182,7 @@ int     count(void);
 
 
 \/\/.*                          {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Comment: [ %s ]\n", yytext);
                                 #endif
 
@@ -192,7 +194,7 @@ int     count(void);
 [a-zA-Z_]+[a-zA-Z0-9_]*         {
                                 Symbol *sp;
 
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Ident:   [ %s ]\n", yytext);
                                 #endif
 
@@ -204,7 +206,7 @@ int     count(void);
 
                                     if(sp->type == BUILTIN)
                                         {
-                                        #ifdef TEST
+                                        #ifdef TEST_PARSE
                                         printf("Bultin: %s\n", sp->name );
                                         #endif
 
@@ -214,7 +216,7 @@ int     count(void);
                                         }
                                     else if(sp->type == IBUILTIN)
                                         {
-                                        #ifdef TEST
+                                        #ifdef TEST_PARSE
                                         printf("Bultin: %s\n", sp->name );
                                         #endif
 
@@ -224,7 +226,7 @@ int     count(void);
                                         }
                                     else if(sp->type == VAR)
                                         {
-                                        #ifdef TEST
+                                        #ifdef TEST_PARSE
                                         printf("Var: %s\n", sp->name );
                                         #endif
 
@@ -255,7 +257,7 @@ $[a-zA-Z_]+[a-zA-Z0-9_]*       {
                                         install_sym(yytext, STRVAR, 0.0);
                                     }
 
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Stringvar: [ %s ]\n", yytext);
                                 #endif
 
@@ -265,7 +267,7 @@ $[a-zA-Z_]+[a-zA-Z0-9_]*       {
                                 }
 
 [\r]                            {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" Comment: [ %s ]\n", yytext);
                                 #endif
 
@@ -278,7 +280,7 @@ $[a-zA-Z_]+[a-zA-Z0-9_]*       {
 [\n]                            {   }
 
 [ \t]+                          {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 //printf(" White:   [ %s ]\n", yytext);
                                 #endif
 
@@ -288,12 +290,42 @@ $[a-zA-Z_]+[a-zA-Z0-9_]*       {
                                 }
 
 \".*\"                          {
-                                #ifdef TEST
+                                #ifdef TEST_PARSE
                                 printf(" String:  [ %s ]\n", yytext);
                                 #endif
 
                                 #ifdef RET_EACH
                                 //return(STR);
+                                #endif
+                                }
+
+"<<"                            {
+                                #ifdef TEST_PARSE
+                                printf(" Shift:  [ %s ]\n", yytext);
+                                #endif
+
+                                #ifdef RET_EACH
+                                return(LSHIFT);
+                                #endif
+                                }
+
+">>"                            {
+                                #ifdef TEST_PARSE
+                                printf(" Shift:  [ %s ]\n", yytext);
+                                #endif
+
+                                #ifdef RET_EACH
+                                return(RSHIFT);
+                                #endif
+                                }
+
+"**"                            {
+                                #ifdef TEST_PARSE
+                                printf(" Power:  [ %s ]\n", yytext);
+                                #endif
+
+                                #ifdef RET_EACH
+                                return(POWER);
                                 #endif
                                 }
 

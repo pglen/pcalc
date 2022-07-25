@@ -68,9 +68,11 @@ static int     parse_comline(int argc, char *argv[]);
 %right  '='
 %left   '|' '&'
 %left   '+' '-'
+%left   LSHIFT RSHIFT
 %left   '*' '/' '%'
 %left   UNARYMINUS
 %right  '^'                                             /*  exponentiation */
+%right  POWER                                           /*  exponentiation */
 
 %%
 
@@ -118,6 +120,8 @@ expr: 		NUMBER
         |   BUILTIN   expr          { $$ = (*($1->u.ptr))($2) ; }
         |   expr '|' expr           { $$ = (long)$1 | (long)$3 ;}
         |   expr '&' expr           { $$ = (long)$1 & (long)$3 ;}
+        |   expr LSHIFT expr        { $$ = (long)$1 << (long)$3 ; }
+        |   expr RSHIFT expr        { $$ = (long)$1 >> (long)$3 ; }
         |   expr '+' expr           { $$ = $1 + $3 ; }
         |   expr '-' expr           { $$ = $1 - $3 ; }
         |   expr '*' expr           { $$ = $1 * $3 ; }
@@ -128,6 +132,7 @@ expr: 		NUMBER
                                     $$ = $1 / $3 ;
                                     }
         |   expr '^' expr           { $$ = Pow( $1, $3) ; }
+        |   expr POWER expr         { $$ = Pow( $1, $3) ; }
         |   '(' expr ')'            { $$ = $2 ; }
         |   '-' expr  %prec UNARYMINUS { $$ = -$2 ; }
         ;
@@ -135,7 +140,6 @@ expr: 		NUMBER
 str:     STR                    { }
         |STRVAR                 { }
         ;
-
 
 %%
 

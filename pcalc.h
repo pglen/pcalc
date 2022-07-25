@@ -15,7 +15,10 @@ typedef union {                                           /* stack object type  
 #define	STORE	266
 #define	RESTORE	267
 #define	STRVAR	268
-#define	UNARYMINUS	269
 
+#define LSHIFT 269
+#define RSHIFT 270
+#define	UNARYMINUS	271
+#define POWER 272
 
 extern YYSTYPE yylval;

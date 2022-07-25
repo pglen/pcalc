@@ -1,0 +1,1152 @@
+Terminals unused in grammar
+
+    UNDEF
+
+
+Rules useless in parser due to conflicts
+
+    2 list: list
+
+
+State 1 conflicts: 12 shift/reduce
+State 7 conflicts: 7 shift/reduce
+State 16 conflicts: 1 shift/reduce
+State 20 conflicts: 11 shift/reduce
+State 21 conflicts: 12 reduce/reduce
+State 24 conflicts: 1 shift/reduce
+State 59 conflicts: 23 reduce/reduce
+
+
+Grammar
+
+    0 $accept: list $end
+
+    1 list: ε
+    2     | list
+    3     | list asgn
+    4     | list junk
+    5     | list expr
+    6     | list STORE VAR
+    7     | list STORE VAR TO STR
+    8     | list RESTORE VAR
+    9     | list RESTORE VAR FROM STR
+   10     | list error
+
+   11 junk: IBUILTIN str
+   12     | IBUILTIN
+   13     | IBUILTIN VAR
+   14     | IBUILTIN expr
+   15     | STR
+   16     | STRVAR
+
+   17 asgn: VAR '=' expr
+   18     | STRVAR '=' STR
+
+   19 expr: NUMBER
+   20     | VAR
+   21     | BUILTIN '(' expr ')'
+   22     | BUILTIN expr
+   23     | expr '|' expr
+   24     | expr '&' expr
+   25     | expr LSHIFT expr
+   26     | expr RSHIFT expr
+   27     | expr '+' expr
+   28     | expr '-' expr
+   29     | expr '*' expr
+   30     | expr '%' expr
+   31     | expr '/' expr
+   32     | expr '^' expr
+   33     | expr POWER expr
+   34     | '(' expr ')'
+   35     | '-' expr
+
+   36 str: STR
+   37    | STRVAR
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '%' (37) 30
+    '&' (38) 24
+    '(' (40) 21 34
+    ')' (41) 21 34
+    '*' (42) 29
+    '+' (43) 27
+    '-' (45) 28 35
+    '/' (47) 31
+    '=' (61) 17 18
+    '^' (94) 32
+    '|' (124) 23
+    error (256) 10
+    NUMBER <val> (258) 19
+    VAR <sym> (259) 6 7 8 9 13 17 20
+    BUILTIN <sym> (260) 21 22
+    IBUILTIN <sym> (261) 11 12 13 14
+    UNDEF <sym> (262)
+    STR <sym> (263) 7 9 15 18 36
+    TO <sym> (264) 7
+    FROM <sym> (265) 9
+    STORE <sym> (266) 6 7
+    RESTORE <sym> (267) 8 9
+    STRVAR <sym> (268) 16 18 37
+    LSHIFT (269) 25
+    RSHIFT (270) 26
+    UNARYMINUS (271)
+    POWER (272) 33
+
+
+Nonterminals, with rules where they appear
+
+    $accept (29)
+        on left: 0
+    list (30)
+        on left: 1 2 3 4 5 6 7 8 9 10
+        on right: 0 2 3 4 5 6 7 8 9 10
+    junk <sym> (31)
+        on left: 11 12 13 14 15 16
+        on right: 4
+    asgn <val> (32)
+        on left: 17 18
+        on right: 3
+    expr <val> (33)
+        on left: 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35
+        on right: 5 14 17 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35
+    str <sym> (34)
+        on left: 36 37
+        on right: 11
+
+
+State 0
+
+    0 $accept: • list $end
+
+    $default  reduce using rule 1 (list)
+
+    list  go to state 1
+
+
+State 1
+
+    0 $accept: list • $end
+    2 list: list •
+    3     | list • asgn
+    4     | list • junk
+    5     | list • expr
+    6     | list • STORE VAR
+    7     | list • STORE VAR TO STR
+    8     | list • RESTORE VAR
+    9     | list • RESTORE VAR FROM STR
+   10     | list • error
+
+    $end      shift, and go to state 2
+    error     shift, and go to state 3
+    NUMBER    shift, and go to state 4
+    VAR       shift, and go to state 5
+    BUILTIN   shift, and go to state 6
+    IBUILTIN  shift, and go to state 7
+    STR       shift, and go to state 8
+    STORE     shift, and go to state 9
+    RESTORE   shift, and go to state 10
+    STRVAR    shift, and go to state 11
+    '-'       shift, and go to state 12
+    '('       shift, and go to state 13
+
+    $end      [reduce using rule 2 (list)]
+    error     [reduce using rule 2 (list)]
+    NUMBER    [reduce using rule 2 (list)]
+    VAR       [reduce using rule 2 (list)]
+    BUILTIN   [reduce using rule 2 (list)]
+    IBUILTIN  [reduce using rule 2 (list)]
+    STR       [reduce using rule 2 (list)]
+    STORE     [reduce using rule 2 (list)]
+    RESTORE   [reduce using rule 2 (list)]
+    STRVAR    [reduce using rule 2 (list)]
+    '-'       [reduce using rule 2 (list)]
+    '('       [reduce using rule 2 (list)]
+
+    junk  go to state 14
+    asgn  go to state 15
+    expr  go to state 16
+
+
+State 2
+
+    0 $accept: list $end •
+
+    $default  accept
+
+
+State 3
+
+   10 list: list error •
+
+    $default  reduce using rule 10 (list)
+
+
+State 4
+
+   19 expr: NUMBER •
+
+    $default  reduce using rule 19 (expr)
+
+
+State 5
+
+   17 asgn: VAR • '=' expr
+   20 expr: VAR •
+
+    '='  shift, and go to state 17
+
+    $default  reduce using rule 20 (expr)
+
+
+State 6
+
+   21 expr: BUILTIN • '(' expr ')'
+   22     | BUILTIN • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 19
+
+    expr  go to state 20
+
+
+State 7
+
+   11 junk: IBUILTIN • str
+   12     | IBUILTIN •
+   13     | IBUILTIN • VAR
+   14     | IBUILTIN • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 21
+    BUILTIN  shift, and go to state 6
+    STR      shift, and go to state 22
+    STRVAR   shift, and go to state 23
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    NUMBER    [reduce using rule 12 (junk)]
+    VAR       [reduce using rule 12 (junk)]
+    BUILTIN   [reduce using rule 12 (junk)]
+    STR       [reduce using rule 12 (junk)]
+    STRVAR    [reduce using rule 12 (junk)]
+    '-'       [reduce using rule 12 (junk)]
+    '('       [reduce using rule 12 (junk)]
+    $default  reduce using rule 12 (junk)
+
+    expr  go to state 24
+    str   go to state 25
+
+
+State 8
+
+   15 junk: STR •
+
+    $default  reduce using rule 15 (junk)
+
+
+State 9
+
+    6 list: list STORE • VAR
+    7     | list STORE • VAR TO STR
+
+    VAR  shift, and go to state 26
+
+
+State 10
+
+    8 list: list RESTORE • VAR
+    9     | list RESTORE • VAR FROM STR
+
+    VAR  shift, and go to state 27
+
+
+State 11
+
+   16 junk: STRVAR •
+   18 asgn: STRVAR • '=' STR
+
+    '='  shift, and go to state 28
+
+    $default  reduce using rule 16 (junk)
+
+
+State 12
+
+   35 expr: '-' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 29
+
+
+State 13
+
+   34 expr: '(' • expr ')'
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 30
+
+
+State 14
+
+    4 list: list junk •
+
+    $default  reduce using rule 4 (list)
+
+
+State 15
+
+    3 list: list asgn •
+
+    $default  reduce using rule 3 (list)
+
+
+State 16
+
+    5 list: list expr •
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '|'     shift, and go to state 31
+    '&'     shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    '-'       [reduce using rule 5 (list)]
+    $default  reduce using rule 5 (list)
+
+
+State 17
+
+   17 asgn: VAR '=' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 42
+
+
+State 18
+
+   20 expr: VAR •
+
+    $default  reduce using rule 20 (expr)
+
+
+State 19
+
+   21 expr: BUILTIN '(' • expr ')'
+   34     | '(' • expr ')'
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 43
+
+
+State 20
+
+   22 expr: BUILTIN expr •
+   23     | expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '|'     shift, and go to state 31
+    '&'     shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    '|'       [reduce using rule 22 (expr)]
+    '&'       [reduce using rule 22 (expr)]
+    '+'       [reduce using rule 22 (expr)]
+    '-'       [reduce using rule 22 (expr)]
+    LSHIFT    [reduce using rule 22 (expr)]
+    RSHIFT    [reduce using rule 22 (expr)]
+    '*'       [reduce using rule 22 (expr)]
+    '/'       [reduce using rule 22 (expr)]
+    '%'       [reduce using rule 22 (expr)]
+    '^'       [reduce using rule 22 (expr)]
+    POWER     [reduce using rule 22 (expr)]
+    $default  reduce using rule 22 (expr)
+
+
+State 21
+
+   13 junk: IBUILTIN VAR •
+   20 expr: VAR •
+
+    $end      reduce using rule 13 (junk)
+    $end      [reduce using rule 20 (expr)]
+    error     reduce using rule 13 (junk)
+    error     [reduce using rule 20 (expr)]
+    NUMBER    reduce using rule 13 (junk)
+    NUMBER    [reduce using rule 20 (expr)]
+    VAR       reduce using rule 13 (junk)
+    VAR       [reduce using rule 20 (expr)]
+    BUILTIN   reduce using rule 13 (junk)
+    BUILTIN   [reduce using rule 20 (expr)]
+    IBUILTIN  reduce using rule 13 (junk)
+    IBUILTIN  [reduce using rule 20 (expr)]
+    STR       reduce using rule 13 (junk)
+    STR       [reduce using rule 20 (expr)]
+    STORE     reduce using rule 13 (junk)
+    STORE     [reduce using rule 20 (expr)]
+    RESTORE   reduce using rule 13 (junk)
+    RESTORE   [reduce using rule 20 (expr)]
+    STRVAR    reduce using rule 13 (junk)
+    STRVAR    [reduce using rule 20 (expr)]
+    '|'       reduce using rule 20 (expr)
+    '&'       reduce using rule 20 (expr)
+    '+'       reduce using rule 20 (expr)
+    '-'       reduce using rule 13 (junk)
+    '-'       [reduce using rule 20 (expr)]
+    LSHIFT    reduce using rule 20 (expr)
+    RSHIFT    reduce using rule 20 (expr)
+    '*'       reduce using rule 20 (expr)
+    '/'       reduce using rule 20 (expr)
+    '%'       reduce using rule 20 (expr)
+    '^'       reduce using rule 20 (expr)
+    POWER     reduce using rule 20 (expr)
+    '('       reduce using rule 13 (junk)
+    '('       [reduce using rule 20 (expr)]
+    $default  reduce using rule 13 (junk)
+
+
+State 22
+
+   36 str: STR •
+
+    $default  reduce using rule 36 (str)
+
+
+State 23
+
+   37 str: STRVAR •
+
+    $default  reduce using rule 37 (str)
+
+
+State 24
+
+   14 junk: IBUILTIN expr •
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '|'     shift, and go to state 31
+    '&'     shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    '-'       [reduce using rule 14 (junk)]
+    $default  reduce using rule 14 (junk)
+
+
+State 25
+
+   11 junk: IBUILTIN str •
+
+    $default  reduce using rule 11 (junk)
+
+
+State 26
+
+    6 list: list STORE VAR •
+    7     | list STORE VAR • TO STR
+
+    TO  shift, and go to state 44
+
+    $default  reduce using rule 6 (list)
+
+
+State 27
+
+    8 list: list RESTORE VAR •
+    9     | list RESTORE VAR • FROM STR
+
+    FROM  shift, and go to state 45
+
+    $default  reduce using rule 8 (list)
+
+
+State 28
+
+   18 asgn: STRVAR '=' • STR
+
+    STR  shift, and go to state 46
+
+
+State 29
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+   35     | '-' expr •
+
+    '^'    shift, and go to state 40
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 35 (expr)
+
+
+State 30
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+   34     | '(' expr • ')'
+
+    '|'     shift, and go to state 31
+    '&'     shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+    ')'     shift, and go to state 47
+
+
+State 31
+
+   23 expr: expr '|' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 48
+
+
+State 32
+
+   24 expr: expr '&' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 49
+
+
+State 33
+
+   27 expr: expr '+' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 50
+
+
+State 34
+
+   28 expr: expr '-' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 51
+
+
+State 35
+
+   25 expr: expr LSHIFT • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 52
+
+
+State 36
+
+   26 expr: expr RSHIFT • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 53
+
+
+State 37
+
+   29 expr: expr '*' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 54
+
+
+State 38
+
+   31 expr: expr '/' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 55
+
+
+State 39
+
+   30 expr: expr '%' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 56
+
+
+State 40
+
+   32 expr: expr '^' • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 57
+
+
+State 41
+
+   33 expr: expr POWER • expr
+
+    NUMBER   shift, and go to state 4
+    VAR      shift, and go to state 18
+    BUILTIN  shift, and go to state 6
+    '-'      shift, and go to state 12
+    '('      shift, and go to state 13
+
+    expr  go to state 58
+
+
+State 42
+
+   17 asgn: VAR '=' expr •
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '|'     shift, and go to state 31
+    '&'     shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    $default  reduce using rule 17 (asgn)
+
+
+State 43
+
+   21 expr: BUILTIN '(' expr • ')'
+   23     | expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+   34     | '(' expr • ')'
+
+    '|'     shift, and go to state 31
+    '&'     shift, and go to state 32
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+    ')'     shift, and go to state 59
+
+
+State 44
+
+    7 list: list STORE VAR TO • STR
+
+    STR  shift, and go to state 60
+
+
+State 45
+
+    9 list: list RESTORE VAR FROM • STR
+
+    STR  shift, and go to state 61
+
+
+State 46
+
+   18 asgn: STRVAR '=' STR •
+
+    $default  reduce using rule 18 (asgn)
+
+
+State 47
+
+   34 expr: '(' expr ')' •
+
+    $default  reduce using rule 34 (expr)
+
+
+State 48
+
+   23 expr: expr • '|' expr
+   23     | expr '|' expr •
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    $default  reduce using rule 23 (expr)
+
+
+State 49
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   24     | expr '&' expr •
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '+'     shift, and go to state 33
+    '-'     shift, and go to state 34
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    $default  reduce using rule 24 (expr)
+
+
+State 50
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   27     | expr '+' expr •
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    $default  reduce using rule 27 (expr)
+
+
+State 51
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   28     | expr '-' expr •
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    LSHIFT  shift, and go to state 35
+    RSHIFT  shift, and go to state 36
+    '*'     shift, and go to state 37
+    '/'     shift, and go to state 38
+    '%'     shift, and go to state 39
+    '^'     shift, and go to state 40
+    POWER   shift, and go to state 41
+
+    $default  reduce using rule 28 (expr)
+
+
+State 52
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   25     | expr LSHIFT expr •
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '*'    shift, and go to state 37
+    '/'    shift, and go to state 38
+    '%'    shift, and go to state 39
+    '^'    shift, and go to state 40
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 25 (expr)
+
+
+State 53
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   26     | expr RSHIFT expr •
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '*'    shift, and go to state 37
+    '/'    shift, and go to state 38
+    '%'    shift, and go to state 39
+    '^'    shift, and go to state 40
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 26 (expr)
+
+
+State 54
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   29     | expr '*' expr •
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '^'    shift, and go to state 40
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 29 (expr)
+
+
+State 55
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   31     | expr '/' expr •
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '^'    shift, and go to state 40
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 31 (expr)
+
+
+State 56
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   30     | expr '%' expr •
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+
+    '^'    shift, and go to state 40
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 30 (expr)
+
+
+State 57
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   32     | expr '^' expr •
+   33     | expr • POWER expr
+
+    '^'    shift, and go to state 40
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 32 (expr)
+
+
+State 58
+
+   23 expr: expr • '|' expr
+   24     | expr • '&' expr
+   25     | expr • LSHIFT expr
+   26     | expr • RSHIFT expr
+   27     | expr • '+' expr
+   28     | expr • '-' expr
+   29     | expr • '*' expr
+   30     | expr • '%' expr
+   31     | expr • '/' expr
+   32     | expr • '^' expr
+   33     | expr • POWER expr
+   33     | expr POWER expr •
+
+    POWER  shift, and go to state 41
+
+    $default  reduce using rule 33 (expr)
+
+
+State 59
+
+   21 expr: BUILTIN '(' expr ')' •
+   34     | '(' expr ')' •
+
+    $end      reduce using rule 21 (expr)
+    $end      [reduce using rule 34 (expr)]
+    error     reduce using rule 21 (expr)
+    error     [reduce using rule 34 (expr)]
+    NUMBER    reduce using rule 21 (expr)
+    NUMBER    [reduce using rule 34 (expr)]
+    VAR       reduce using rule 21 (expr)
+    VAR       [reduce using rule 34 (expr)]
+    BUILTIN   reduce using rule 21 (expr)
+    BUILTIN   [reduce using rule 34 (expr)]
+    IBUILTIN  reduce using rule 21 (expr)
+    IBUILTIN  [reduce using rule 34 (expr)]
+    STR       reduce using rule 21 (expr)
+    STR       [reduce using rule 34 (expr)]
+    STORE     reduce using rule 21 (expr)
+    STORE     [reduce using rule 34 (expr)]
+    RESTORE   reduce using rule 21 (expr)
+    RESTORE   [reduce using rule 34 (expr)]
+    STRVAR    reduce using rule 21 (expr)
+    STRVAR    [reduce using rule 34 (expr)]
+    '|'       reduce using rule 21 (expr)
+    '|'       [reduce using rule 34 (expr)]
+    '&'       reduce using rule 21 (expr)
+    '&'       [reduce using rule 34 (expr)]
+    '+'       reduce using rule 21 (expr)
+    '+'       [reduce using rule 34 (expr)]
+    '-'       reduce using rule 21 (expr)
+    '-'       [reduce using rule 34 (expr)]
+    LSHIFT    reduce using rule 21 (expr)
+    LSHIFT    [reduce using rule 34 (expr)]
+    RSHIFT    reduce using rule 21 (expr)
+    RSHIFT    [reduce using rule 34 (expr)]
+    '*'       reduce using rule 21 (expr)
+    '*'       [reduce using rule 34 (expr)]
+    '/'       reduce using rule 21 (expr)
+    '/'       [reduce using rule 34 (expr)]
+    '%'       reduce using rule 21 (expr)
+    '%'       [reduce using rule 34 (expr)]
+    '^'       reduce using rule 21 (expr)
+    '^'       [reduce using rule 34 (expr)]
+    POWER     reduce using rule 21 (expr)
+    POWER     [reduce using rule 34 (expr)]
+    '('       reduce using rule 21 (expr)
+    '('       [reduce using rule 34 (expr)]
+    ')'       reduce using rule 21 (expr)
+    ')'       [reduce using rule 34 (expr)]
+    $default  reduce using rule 21 (expr)
+
+
+State 60
+
+    7 list: list STORE VAR TO STR •
+
+    $default  reduce using rule 7 (list)
+
+
+State 61
+
+    9 list: list RESTORE VAR FROM STR •
+
+    $default  reduce using rule 9 (list)

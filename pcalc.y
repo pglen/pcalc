@@ -160,7 +160,7 @@ int     len;
 char    buff[512];
 
 FILE    *in_fp;
-char *version = "1.3";
+char *version = "1.4";
 
 static char *tmpfilenm =  "pcalc.tmp";
 

@@ -39,9 +39,6 @@
 /* -------- Defines: ----------------------------------------------------- */
 
 
-/* -------- Macros: ------------------------------------------------------ */
-
-
 /* -------- Protos ------------------------------------------------------- */
 
 int     basehelp(void);
@@ -52,10 +49,10 @@ int     conshelp(void);
 int     cbhelp(void);
 int     help_help(void);
 
-/* -------- Declarations: ------------------------------------------------ */
+extern  int     pgdebug;
+extern  int     verbose;
+extern  int     gl_float;
 
-
-/* -------- Definitions: ------------------------------------------------- */
 
 #undef  EXTERN
 #undef  EXPORT

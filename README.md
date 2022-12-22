@@ -1,4 +1,4 @@
-#                Programmer's Calculator  (Ver 1.4)
+#                Programmer's Calculator  (Ver 1.5)
 
 ##  Arithmetic in base 16, base 10, base 2 (hex, dec, bin)
 

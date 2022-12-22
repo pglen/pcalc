@@ -24,6 +24,7 @@
 
 #include "hocdecl.h"
 #include "symbol.h"
+#include "help.h"
 
 /* -------- Forward references for procedures: --------------------------- */
 
@@ -33,34 +34,74 @@ void    long_to_bin_str(unsigned long num, char *str);
 
 char    work_str[128];
 
+//extern int gl_float;
+
 void    print_num(double var)
 
 {
     Symbol *msx  = lookup_sym("DEC");
-    
-    // compatibility variable:
 
+    // compatibility variable:
     if(!msx)
-      msx  = lookup_sym("DECIMAL");
-    
+        msx  = lookup_sym("DECIMAL");
+
+    //printf("Called print_num %12.12f \n", var);
+
     if(msx && msx->u.val == 1)
-      {
-	printf("%g" , var);
-      }
+        {
+        if(gl_float)
+            {
+            char tmp[36];
+            snprintf(tmp, sizeof(tmp), "%12.12f", var);
+
+            // Scale back trailing zeros
+            for(int aa = sizeof(tmp) - 1; aa >= 0; aa--)
+                {
+                if(tmp[aa] == '0')
+                    tmp[aa] =  '\0';
+                else
+                    break;
+                }
+            printf("%s", tmp);
+            }
+        else
+            {
+            printf("d%g" , var);
+            }
+        }
     else if(msx && msx->u.val == 2)
-      {
-	printf("%lx" , (long)var);
-      }
+        {
+        printf("%lx" , (long)var);
+        }
     else if(msx && msx->u.val == 3)
-      {
-	long_to_bin_str((long)var, work_str);
-	printf("%s", work_str);
-      }
+        {
+        long_to_bin_str((long)var, work_str);
+        printf("%s", work_str);
+        }
     else
-      {
-	long_to_bin_str((long)var, work_str);
-	printf("\t%-8.8g\t0x%-8lx\t0y%s\n" , var, (long)var, work_str);
-      }
+        {
+        long_to_bin_str((long)var, work_str);
+
+        if(gl_float)
+            {
+            char tmp[36];
+            snprintf(tmp, sizeof(tmp), "%12.12f", var);
+
+            // Scale back trailing zeros
+            for(int aa = sizeof(tmp) - 1; aa >= 0; aa--)
+                {
+                if(tmp[aa] == '0')
+                    tmp[aa] =  '\0';
+                else
+                    break;
+                }
+            printf("\t%-s\t0x%-8lx\t0y%s\n" , tmp, (long)var, work_str);
+            }
+        else
+            {
+            printf("\t%-8.8g\t0x%-8lx\t0y%s\n" , var, (long)var, work_str);
+            }
+        }
 }
 
 /*
@@ -82,7 +123,6 @@ void    long_to_bin_str(unsigned long num, char *str)
         strcpy(str, "0");
         return;
         }
-
     for(a = BITS_IN_LONG; a > 0; a--)
         {
         div = (unsigned long)1 << (a-1);

@@ -87,6 +87,7 @@
      0.00  nov/26/2019      Peter Glen    Added on Github
      0.00  Fri 29.Apr.2022  Peter Glen    Recompiled for '%' operator
      0.00  Fri 29.Apr.2022  Peter Glen    Added temp dir escape
+     0.00  Thu 22.Dec.2022  Peter Glen    moved *.c *.h to src dir
 
      ======================================================================= */
 
@@ -109,19 +110,15 @@
 #include "store.h"
 #include "print.h"
 
-int verbose = 0;
-
-static int     parse_comline(int argc, char *argv[]);
+//static int     parse_comline(int argc, char *argv[]);
 
   int     fSilent = 0;
-
   extern  FILE * yyin ;
-
   static    char    work_str[128];
 
   
 
-#line 125 "pcalc.c"
+#line 122 "pcalc.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -205,14 +202,14 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 54 "src/pcalc.y"
+#line 51 "src/pcalc.y"
                                            /* stack object type    */
     int     intval ;                               /* actual value         */
     long    lngval ;                               /* actual value         */
     double  val ;                                  /* actual value         */
     Symbol  *sym ;                                 /* symbol table ptr     */
 
-#line 216 "pcalc.c"
+#line 213 "pcalc.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -654,10 +651,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    81,    81,    82,    83,    84,    85,    88,    91,    94,
-      98,   102,   106,   107,   108,   109,   110,   111,   114,   115,
-     119,   120,   121,   122,   123,   124,   125,   126,   127,   128,
-     129,   130,   131,   136,   137,   138,   139,   142,   143
+       0,    78,    78,    79,    80,    81,    82,    85,    88,    91,
+      95,    99,   103,   104,   105,   106,   107,   108,   111,   112,
+     116,   117,   118,   119,   120,   121,   122,   123,   124,   125,
+     126,   127,   128,   133,   134,   135,   136,   139,   140
 };
 #endif
 
@@ -1271,215 +1268,215 @@ yyreduce:
   switch (yyn)
     {
   case 6: /* list: list expr  */
-#line 85 "src/pcalc.y"
+#line 82 "src/pcalc.y"
                                     {
                                     print_num((yyvsp[0].val));
                                     }
-#line 1279 "pcalc.c"
+#line 1276 "pcalc.c"
     break;
 
   case 7: /* list: list STORE VAR  */
-#line 88 "src/pcalc.y"
+#line 85 "src/pcalc.y"
                                     {
                                     store("pcalc.var", (yyvsp[0].sym)->name, (yyvsp[0].sym)->u.val);
                                     }
-#line 1287 "pcalc.c"
+#line 1284 "pcalc.c"
     break;
 
   case 8: /* list: list STORE VAR TO STR  */
-#line 91 "src/pcalc.y"
+#line 88 "src/pcalc.y"
                                     {
                                     store((yyvsp[0].sym)->name, (yyvsp[-2].sym)->name, (yyvsp[-2].sym)->u.val);
                                     }
-#line 1295 "pcalc.c"
+#line 1292 "pcalc.c"
     break;
 
   case 9: /* list: list RESTORE VAR  */
-#line 94 "src/pcalc.y"
+#line 91 "src/pcalc.y"
                                     {
                                     restore("pcalc.var",
                                             (yyvsp[0].sym)->name, &((yyvsp[0].sym)->u.val));
                                     }
-#line 1304 "pcalc.c"
+#line 1301 "pcalc.c"
     break;
 
   case 10: /* list: list RESTORE VAR FROM STR  */
-#line 98 "src/pcalc.y"
+#line 95 "src/pcalc.y"
                                        {
                                     restore((yyvsp[0].sym)->name,
                                             (yyvsp[-2].sym)->name, &((yyvsp[-2].sym)->u.val));
                                     }
-#line 1313 "pcalc.c"
+#line 1310 "pcalc.c"
     break;
 
   case 11: /* list: list error  */
-#line 102 "src/pcalc.y"
+#line 99 "src/pcalc.y"
                                     { yyerrok ; }
-#line 1319 "pcalc.c"
+#line 1316 "pcalc.c"
     break;
 
   case 12: /* junk: IBUILTIN str  */
-#line 106 "src/pcalc.y"
+#line 103 "src/pcalc.y"
                                     { (*((yyvsp[-1].sym)->u.iptr))((yyvsp[0].sym)->u.str) ; }
-#line 1325 "pcalc.c"
+#line 1322 "pcalc.c"
     break;
 
   case 13: /* junk: IBUILTIN  */
-#line 107 "src/pcalc.y"
+#line 104 "src/pcalc.y"
                                     { }
-#line 1331 "pcalc.c"
+#line 1328 "pcalc.c"
     break;
 
   case 14: /* junk: IBUILTIN VAR  */
-#line 108 "src/pcalc.y"
+#line 105 "src/pcalc.y"
                                     { (*((yyvsp[-1].sym)->u.iptr))((yyvsp[0].sym)->u.val) ; }
-#line 1337 "pcalc.c"
+#line 1334 "pcalc.c"
     break;
 
   case 15: /* junk: IBUILTIN expr  */
-#line 109 "src/pcalc.y"
+#line 106 "src/pcalc.y"
                                     { (*((yyvsp[-1].sym)->u.iptr))((yyvsp[0].val)) ;       }
-#line 1343 "pcalc.c"
+#line 1340 "pcalc.c"
     break;
 
   case 16: /* junk: STR  */
-#line 110 "src/pcalc.y"
+#line 107 "src/pcalc.y"
                                     { printf("%s", (yyvsp[0].sym)->name);}
-#line 1349 "pcalc.c"
+#line 1346 "pcalc.c"
     break;
 
   case 17: /* junk: STRVAR  */
-#line 111 "src/pcalc.y"
+#line 108 "src/pcalc.y"
                                     { printf("%s", (yyvsp[0].sym)->u.str);}
-#line 1355 "pcalc.c"
+#line 1352 "pcalc.c"
     break;
 
   case 18: /* asgn: VAR '=' expr  */
-#line 114 "src/pcalc.y"
+#line 111 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].sym)->u.val = (yyvsp[0].val) ; (yyvsp[-2].sym)->type = VAR ; }
-#line 1361 "pcalc.c"
+#line 1358 "pcalc.c"
     break;
 
   case 19: /* asgn: STRVAR '=' STR  */
-#line 115 "src/pcalc.y"
+#line 112 "src/pcalc.y"
                                     { (yyvsp[-2].sym)->u.str = (yyvsp[0].sym)->name; (yyvsp[-2].sym)->type = STRVAR ;}
-#line 1367 "pcalc.c"
+#line 1364 "pcalc.c"
     break;
 
   case 21: /* expr: VAR  */
-#line 120 "src/pcalc.y"
+#line 117 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[0].sym)->u.val ; }
-#line 1373 "pcalc.c"
+#line 1370 "pcalc.c"
     break;
 
   case 22: /* expr: BUILTIN '(' expr ')'  */
-#line 121 "src/pcalc.y"
+#line 118 "src/pcalc.y"
                                     { (yyval.val) = (*((yyvsp[-3].sym)->u.ptr))((yyvsp[-1].val)) ; }
-#line 1379 "pcalc.c"
+#line 1376 "pcalc.c"
     break;
 
   case 23: /* expr: BUILTIN expr  */
-#line 122 "src/pcalc.y"
+#line 119 "src/pcalc.y"
                                     { (yyval.val) = (*((yyvsp[-1].sym)->u.ptr))((yyvsp[0].val)) ; }
-#line 1385 "pcalc.c"
+#line 1382 "pcalc.c"
     break;
 
   case 24: /* expr: expr '|' expr  */
-#line 123 "src/pcalc.y"
+#line 120 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) | (long)(yyvsp[0].val) ;}
-#line 1391 "pcalc.c"
+#line 1388 "pcalc.c"
     break;
 
   case 25: /* expr: expr '&' expr  */
-#line 124 "src/pcalc.y"
+#line 121 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) & (long)(yyvsp[0].val) ;}
-#line 1397 "pcalc.c"
+#line 1394 "pcalc.c"
     break;
 
   case 26: /* expr: expr LSHIFT expr  */
-#line 125 "src/pcalc.y"
+#line 122 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) << (long)(yyvsp[0].val) ; }
-#line 1403 "pcalc.c"
+#line 1400 "pcalc.c"
     break;
 
   case 27: /* expr: expr RSHIFT expr  */
-#line 126 "src/pcalc.y"
+#line 123 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) >> (long)(yyvsp[0].val) ; }
-#line 1409 "pcalc.c"
+#line 1406 "pcalc.c"
     break;
 
   case 28: /* expr: expr '+' expr  */
-#line 127 "src/pcalc.y"
+#line 124 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].val) + (yyvsp[0].val) ; }
-#line 1415 "pcalc.c"
+#line 1412 "pcalc.c"
     break;
 
   case 29: /* expr: expr '-' expr  */
-#line 128 "src/pcalc.y"
+#line 125 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].val) - (yyvsp[0].val) ; }
-#line 1421 "pcalc.c"
+#line 1418 "pcalc.c"
     break;
 
   case 30: /* expr: expr '*' expr  */
-#line 129 "src/pcalc.y"
+#line 126 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].val) * (yyvsp[0].val) ; }
-#line 1427 "pcalc.c"
+#line 1424 "pcalc.c"
     break;
 
   case 31: /* expr: expr '%' expr  */
-#line 130 "src/pcalc.y"
+#line 127 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) % (long)(yyvsp[0].val) ; }
-#line 1433 "pcalc.c"
+#line 1430 "pcalc.c"
     break;
 
   case 32: /* expr: expr '/' expr  */
-#line 131 "src/pcalc.y"
+#line 128 "src/pcalc.y"
                                     {
                                     if ((yyvsp[0].val) == 0.0)
                                     execerror("division by zero", "") ;
                                     (yyval.val) = (yyvsp[-2].val) / (yyvsp[0].val) ;
                                     }
-#line 1443 "pcalc.c"
+#line 1440 "pcalc.c"
     break;
 
   case 33: /* expr: expr '^' expr  */
-#line 136 "src/pcalc.y"
+#line 133 "src/pcalc.y"
                                     { (yyval.val) = Pow( (yyvsp[-2].val), (yyvsp[0].val)) ; }
-#line 1449 "pcalc.c"
+#line 1446 "pcalc.c"
     break;
 
   case 34: /* expr: expr POWER expr  */
-#line 137 "src/pcalc.y"
+#line 134 "src/pcalc.y"
                                     { (yyval.val) = Pow( (yyvsp[-2].val), (yyvsp[0].val)) ; }
-#line 1455 "pcalc.c"
+#line 1452 "pcalc.c"
     break;
 
   case 35: /* expr: '(' expr ')'  */
-#line 138 "src/pcalc.y"
+#line 135 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-1].val) ; }
-#line 1461 "pcalc.c"
+#line 1458 "pcalc.c"
     break;
 
   case 36: /* expr: '-' expr  */
-#line 139 "src/pcalc.y"
+#line 136 "src/pcalc.y"
                                        { (yyval.val) = -(yyvsp[0].val) ; }
-#line 1467 "pcalc.c"
+#line 1464 "pcalc.c"
     break;
 
   case 37: /* str: STR  */
-#line 142 "src/pcalc.y"
+#line 139 "src/pcalc.y"
                                 { }
-#line 1473 "pcalc.c"
+#line 1470 "pcalc.c"
     break;
 
   case 38: /* str: STRVAR  */
-#line 143 "src/pcalc.y"
+#line 140 "src/pcalc.y"
                                 { }
-#line 1479 "pcalc.c"
+#line 1476 "pcalc.c"
     break;
 
 
-#line 1483 "pcalc.c"
+#line 1480 "pcalc.c"
 
       default: break;
     }
@@ -1672,8 +1669,82 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 146 "src/pcalc.y"
+#line 143 "src/pcalc.y"
 
+
+char    *version = "1.5";
+
+int     pgdebug = 0;
+int     verbose = 0;
+int     gl_float = 0;
+
+/*-------------------------------------------------------------------------*/
+
+int     parse_comline(int argc, char *argv[])
+
+{
+    int i, j = 0;
+    char *ptr;
+
+    for(i=1; i < argc; ++i)
+        {
+        if (*argv[i] == '-')
+            {
+            switch(argv[i][1])
+                {
+                case 'H' :          /* help */
+                case 'h' :
+                    printf("\nPCALC written by Peter Glen\n");
+                    printf("Use: pcalc [options] [argstr [...]]\n");
+                    printf("\n");
+                    printf("  Options:      -s silent (minimal output)\n");
+                    printf("                -h help (this screen)\n");
+                    printf("                -v verbose (more output)\n");
+                    printf("                -V version\n");
+                    printf("                -f float as decimal (instead of sci. notation)\n");
+                    printf("\n");
+                    printf("argsstr:    Items to calculate; (in quotes if necessary)\n");
+                    printf("\n");
+                    help_help();
+                    exit(0);
+                    break;
+
+                case 'S' :          /* quiet mode */
+                case 's' :
+                    fSilent = 1;
+                    j++;
+                    break;
+
+                case 'v' :
+                    verbose ++;
+                    j++;
+                    break;
+
+                case 'd' :
+                    pgdebug ++;
+                    j++;
+                    break;
+
+                case 'f' :
+                    //printf("float on");
+                    gl_float ++;
+                    j++;
+                    break;
+
+                case 'V' :
+                    printf (
+                "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
+                    exit(0);
+                    break;
+
+                default:
+                    // break on first non switch entry:
+                    break;
+                }
+            }
+        }
+    return(j);
+}
 
 char *progname ;
 int lineno = 1;
@@ -1692,7 +1763,6 @@ int     len;
 char    buff[512];
 
 FILE    *in_fp;
-char *version = "1.5";
 
 static char *tmpfilenm =  "pcalc.tmp";
 
@@ -1831,58 +1901,6 @@ void    warning( char *s, char *t)
     fprintf( stderr, " near line %d\n", lineno) ;
 }
 
-/*-------------------------------------------------------------------------*/
-
-
-int     parse_comline(int argc, char *argv[])
-
-{
-    int i, j = 0;
-    char *ptr;
-
-    for(i=1; i < argc; ++i)
-        {
-        if (*argv[i] == '-')
-            {
-            switch(argv[i][1])
-                {
-                case 'H' :          /* help */
-                case 'h' :
-                    printf("\nPCALC written by Peter Glen\n");
-                    printf("use: pcalc [options] [argstr [...]]\n");
-                    printf("     options: -s silent  -h help  -v verbose -V version\n");
-                    printf("     args:    \"items to calculate\"\n");
-
-                    //ophelp();
-                    funchelp();
-                    exit(0);
-                    break;
-
-                case 'S' :          /* quiet mode */
-                case 's' :
-                    fSilent = 1;
-                    j++;
-                    break;
-
-                case 'v' :
-                    verbose ++;
-                    j++;
-                    break;
-
-                case 'V' :
-                    printf (
-                "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
-                    exit(0);
-                    break;
-
-                default:
-                    // break on first non switch entry:
-                    break;
-                }
-            }
-        }
-    return(j);
-}
 
 /* EOF */
 

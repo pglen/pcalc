@@ -17,6 +17,7 @@
      0.00  nov/26/2019      Peter Glen    Added on Github
      0.00  Fri 29.Apr.2022  Peter Glen    Recompiled for '%' operator
      0.00  Fri 29.Apr.2022  Peter Glen    Added temp dir escape
+     0.00  Thu 22.Dec.2022  Peter Glen    moved *.c *.h to src dir
 
      ======================================================================= */
 
@@ -39,14 +40,10 @@
 #include "store.h"
 #include "print.h"
 
-int verbose = 0;
-
-static int     parse_comline(int argc, char *argv[]);
+//static int     parse_comline(int argc, char *argv[]);
 
   int     fSilent = 0;
-
   extern  FILE * yyin ;
-
   static    char    work_str[128];
 
   %}
@@ -145,6 +142,80 @@ str:     STR                    { }
 
 %%
 
+char    *version = "1.5";
+
+int     pgdebug = 0;
+int     verbose = 0;
+int     gl_float = 0;
+
+/*-------------------------------------------------------------------------*/
+
+int     parse_comline(int argc, char *argv[])
+
+{
+    int i, j = 0;
+    char *ptr;
+
+    for(i=1; i < argc; ++i)
+        {
+        if (*argv[i] == '-')
+            {
+            switch(argv[i][1])
+                {
+                case 'H' :          /* help */
+                case 'h' :
+                    printf("\nPCALC written by Peter Glen\n");
+                    printf("Use: pcalc [options] [argstr [...]]\n");
+                    printf("\n");
+                    printf("  Options:      -s silent (minimal output)\n");
+                    printf("                -h help (this screen)\n");
+                    printf("                -v verbose (more output)\n");
+                    printf("                -V version\n");
+                    printf("                -f float as decimal (instead of sci. notation)\n");
+                    printf("\n");
+                    printf("argsstr:    Items to calculate; (in quotes if necessary)\n");
+                    printf("\n");
+                    help_help();
+                    exit(0);
+                    break;
+
+                case 'S' :          /* quiet mode */
+                case 's' :
+                    fSilent = 1;
+                    j++;
+                    break;
+
+                case 'v' :
+                    verbose ++;
+                    j++;
+                    break;
+
+                case 'd' :
+                    pgdebug ++;
+                    j++;
+                    break;
+
+                case 'f' :
+                    //printf("float on");
+                    gl_float ++;
+                    j++;
+                    break;
+
+                case 'V' :
+                    printf (
+                "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
+                    exit(0);
+                    break;
+
+                default:
+                    // break on first non switch entry:
+                    break;
+                }
+            }
+        }
+    return(j);
+}
+
 char *progname ;
 int lineno = 1;
 jmp_buf begin ;
@@ -162,7 +233,6 @@ int     len;
 char    buff[512];
 
 FILE    *in_fp;
-char *version = "1.5";
 
 static char *tmpfilenm =  "pcalc.tmp";
 
@@ -301,58 +371,6 @@ void    warning( char *s, char *t)
     fprintf( stderr, " near line %d\n", lineno) ;
 }
 
-/*-------------------------------------------------------------------------*/
-
-
-int     parse_comline(int argc, char *argv[])
-
-{
-    int i, j = 0;
-    char *ptr;
-
-    for(i=1; i < argc; ++i)
-        {
-        if (*argv[i] == '-')
-            {
-            switch(argv[i][1])
-                {
-                case 'H' :          /* help */
-                case 'h' :
-                    printf("\nPCALC written by Peter Glen\n");
-                    printf("use: pcalc [options] [argstr [...]]\n");
-                    printf("     options: -s silent  -h help  -v verbose -V version\n");
-                    printf("     args:    \"items to calculate\"\n");
-
-                    //ophelp();
-                    funchelp();
-                    exit(0);
-                    break;
-
-                case 'S' :          /* quiet mode */
-                case 's' :
-                    fSilent = 1;
-                    j++;
-                    break;
-
-                case 'v' :
-                    verbose ++;
-                    j++;
-                    break;
-
-                case 'V' :
-                    printf (
-                "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
-                    exit(0);
-                    break;
-
-                default:
-                    // break on first non switch entry:
-                    break;
-                }
-            }
-        }
-    return(j);
-}
 
 /* EOF */
 

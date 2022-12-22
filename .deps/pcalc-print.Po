@@ -60,7 +60,7 @@ pcalc-print.o: src/print.c /usr/include/stdc-predef.h \
  /usr/include/string.h /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h src/hocdecl.h \
- src/symbol.h
+ src/symbol.h src/help.h
 /usr/include/stdc-predef.h:
 /usr/include/stdio.h:
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
@@ -131,3 +131,4 @@ pcalc-print.o: src/print.c /usr/include/stdc-predef.h \
 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:
 src/hocdecl.h:
 src/symbol.h:
+src/help.h:

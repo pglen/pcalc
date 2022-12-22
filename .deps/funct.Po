@@ -1,4 +1,4 @@
-funct.o: funct.c /usr/include/stdc-predef.h /usr/include/stdio.h \
+funct.o: src/funct.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -58,8 +58,8 @@ funct.o: funct.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/string.h /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
- /usr/include/x86_64-linux-gnu/bits/string_fortified.h hocdecl.h symbol.h \
- str.h
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h src/hocdecl.h \
+ src/symbol.h src/str.h
 /usr/include/stdc-predef.h:
 /usr/include/stdio.h:
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
@@ -128,6 +128,6 @@ funct.o: funct.c /usr/include/stdc-predef.h /usr/include/stdio.h \
 /usr/include/strings.h:
 /usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:
-hocdecl.h:
-symbol.h:
-str.h:
+src/hocdecl.h:
+src/symbol.h:
+src/str.h:

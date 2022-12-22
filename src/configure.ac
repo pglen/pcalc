@@ -8,8 +8,8 @@ dnl Checks for programs.
 AC_PROG_YACC
 AC_PROG_CC
 
-AC_PROG_LEX
-#AM_PROG_LEX
+dnl AC_PROG_LEX
+dnl AM_PROG_LEX
 AC_PROG_INSTALL
 
 dnl Checks for libraries.
@@ -30,10 +30,9 @@ dnl Checks for library functions.
 AC_FUNC_ALLOCA
 dnl AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
-AC_CONFIG_FILES([Makefile])
 
-AC_CONFIG_SUBDIRS([src])
+dnl AC_CONFIG_SUBDIRS([src])
 
-dnl AC_OUTPUT(Makefile)
-AC_OUTPUT()
+AC_OUTPUT(Makefile)
+dnl AC_OUTPUT()
 

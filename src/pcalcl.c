@@ -595,8 +595,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "src/pcalcl.l"
-#line 2 "src/pcalcl.l"
+#line 1 "pcalcl.l"
+#line 2 "pcalcl.l"
 
 /*
 ** pcalc LEX
@@ -845,7 +845,7 @@ YY_DECL
 		}
 
 	{
-#line 34 "src/pcalcl.l"
+#line 34 "pcalcl.l"
 
 
 #line 852 "pcalcl.c"
@@ -906,10 +906,10 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-#line 37 "src/pcalcl.l"
+#line 37 "pcalcl.l"
 case 2:
 YY_RULE_SETUP
-#line 37 "src/pcalcl.l"
+#line 37 "pcalcl.l"
 {
                                 count();
 
@@ -919,10 +919,10 @@ YY_RULE_SETUP
                                 }
 	YY_BREAK
 case 3:
-#line 45 "src/pcalcl.l"
+#line 45 "pcalcl.l"
 case 4:
 YY_RULE_SETUP
-#line 45 "src/pcalcl.l"
+#line 45 "pcalcl.l"
 {
                                 count();
 
@@ -932,10 +932,10 @@ YY_RULE_SETUP
                                 }
 	YY_BREAK
 case 5:
-#line 53 "src/pcalcl.l"
+#line 53 "pcalcl.l"
 case 6:
 YY_RULE_SETUP
-#line 53 "src/pcalcl.l"
+#line 53 "pcalcl.l"
 {
                                 count();
 
@@ -945,10 +945,10 @@ YY_RULE_SETUP
                                 }
 	YY_BREAK
 case 7:
-#line 62 "src/pcalcl.l"
+#line 62 "pcalcl.l"
 case 8:
 YY_RULE_SETUP
-#line 62 "src/pcalcl.l"
+#line 62 "pcalcl.l"
 {
                                 count();
 
@@ -958,10 +958,10 @@ YY_RULE_SETUP
                                 }
 	YY_BREAK
 case 9:
-#line 72 "src/pcalcl.l"
+#line 72 "pcalcl.l"
 case 10:
 YY_RULE_SETUP
-#line 72 "src/pcalcl.l"
+#line 72 "pcalcl.l"
 {
                                 count();
 
@@ -971,10 +971,10 @@ YY_RULE_SETUP
                                 }
 	YY_BREAK
 case 11:
-#line 81 "src/pcalcl.l"
+#line 81 "pcalcl.l"
 case 12:
 YY_RULE_SETUP
-#line 81 "src/pcalcl.l"
+#line 81 "pcalcl.l"
 {
                                 count();
 
@@ -985,7 +985,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 89 "src/pcalcl.l"
+#line 89 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Hexadec: [ %s ]\n", yytext);
@@ -1000,7 +1000,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 101 "src/pcalcl.l"
+#line 101 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Binary:  [ %s ]\n", yytext);
@@ -1015,7 +1015,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 113 "src/pcalcl.l"
+#line 113 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Octal:   [ %s ]\n", yytext);
@@ -1030,7 +1030,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 125 "src/pcalcl.l"
+#line 125 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Decimal: [ %s ]\n", yytext);
@@ -1044,16 +1044,16 @@ YY_RULE_SETUP
                                 }
 	YY_BREAK
 case 17:
-#line 138 "src/pcalcl.l"
+#line 138 "pcalcl.l"
 case 18:
-#line 139 "src/pcalcl.l"
+#line 139 "pcalcl.l"
 case 19:
-#line 140 "src/pcalcl.l"
+#line 140 "pcalcl.l"
 case 20:
-#line 141 "src/pcalcl.l"
+#line 141 "pcalcl.l"
 case 21:
 YY_RULE_SETUP
-#line 141 "src/pcalcl.l"
+#line 141 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Decimal: [ %s ]\n", yytext);
@@ -1068,7 +1068,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 153 "src/pcalcl.l"
+#line 153 "pcalcl.l"
 {
                                 Symbol *sp;
 
@@ -1101,7 +1101,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 184 "src/pcalcl.l"
+#line 184 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Comment: [ %s ]\n", yytext);
@@ -1114,7 +1114,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 194 "src/pcalcl.l"
+#line 194 "pcalcl.l"
 {
                                 Symbol *sp;
 
@@ -1173,7 +1173,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 250 "src/pcalcl.l"
+#line 250 "pcalcl.l"
 {
 
                                 yylval.sym = lookup_sym(yytext);
@@ -1195,7 +1195,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 269 "src/pcalcl.l"
+#line 269 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Comment: [ %s ]\n", yytext);
@@ -1210,12 +1210,12 @@ YY_RULE_SETUP
 case 27:
 /* rule 27 can match eol */
 YY_RULE_SETUP
-#line 280 "src/pcalcl.l"
+#line 280 "pcalcl.l"
 {   }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 282 "src/pcalcl.l"
+#line 282 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 //printf(" White:   [ %s ]\n", yytext);
@@ -1228,7 +1228,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 292 "src/pcalcl.l"
+#line 292 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" String:  [ %s ]\n", yytext);
@@ -1241,7 +1241,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 302 "src/pcalcl.l"
+#line 302 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Shift:  [ %s ]\n", yytext);
@@ -1254,7 +1254,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 312 "src/pcalcl.l"
+#line 312 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Shift:  [ %s ]\n", yytext);
@@ -1267,7 +1267,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 322 "src/pcalcl.l"
+#line 322 "pcalcl.l"
 {
                                 #ifdef TEST_PARSE
                                 printf(" Power:  [ %s ]\n", yytext);
@@ -1280,7 +1280,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 332 "src/pcalcl.l"
+#line 332 "pcalcl.l"
 {
                                 count();
 
@@ -1291,7 +1291,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 340 "src/pcalcl.l"
+#line 340 "pcalcl.l"
 {
                                 count();
 
@@ -1302,7 +1302,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 348 "src/pcalcl.l"
+#line 348 "pcalcl.l"
 {
                                 count();
 
@@ -1313,7 +1313,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 356 "src/pcalcl.l"
+#line 356 "pcalcl.l"
 {
                                 count();
 
@@ -1324,7 +1324,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 364 "src/pcalcl.l"
+#line 364 "pcalcl.l"
 {
                                 count();
 
@@ -1335,7 +1335,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 372 "src/pcalcl.l"
+#line 372 "pcalcl.l"
 {
                                 count();
 
@@ -1346,7 +1346,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 380 "src/pcalcl.l"
+#line 380 "pcalcl.l"
 {
                                 count();
 
@@ -1357,7 +1357,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 388 "src/pcalcl.l"
+#line 388 "pcalcl.l"
 {
                                 count();
 
@@ -1368,7 +1368,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 396 "src/pcalcl.l"
+#line 396 "pcalcl.l"
 {
                                 count();
 
@@ -1379,7 +1379,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 404 "src/pcalcl.l"
+#line 404 "pcalcl.l"
 {
                                 count();
 
@@ -1390,7 +1390,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 412 "src/pcalcl.l"
+#line 412 "pcalcl.l"
 {
                                 count();
 
@@ -1401,7 +1401,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 420 "src/pcalcl.l"
+#line 420 "pcalcl.l"
 {
                                 count();
 
@@ -1412,7 +1412,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 428 "src/pcalcl.l"
+#line 428 "pcalcl.l"
 {
                                 count();
 
@@ -1423,7 +1423,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 436 "src/pcalcl.l"
+#line 436 "pcalcl.l"
 {
                                 count();
 
@@ -1434,7 +1434,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 444 "src/pcalcl.l"
+#line 444 "pcalcl.l"
 {
                                 count();
 
@@ -1445,7 +1445,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 452 "src/pcalcl.l"
+#line 452 "pcalcl.l"
 {
                                 count();
 
@@ -1456,7 +1456,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 460 "src/pcalcl.l"
+#line 460 "pcalcl.l"
 {
                                 count();
 
@@ -1467,7 +1467,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 468 "src/pcalcl.l"
+#line 468 "pcalcl.l"
 {
                                 count();
 
@@ -1478,7 +1478,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 476 "src/pcalcl.l"
+#line 476 "pcalcl.l"
 {
                                 count();
 
@@ -1489,7 +1489,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 484 "src/pcalcl.l"
+#line 484 "pcalcl.l"
 {
                                 count();
 
@@ -1500,7 +1500,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 492 "src/pcalcl.l"
+#line 492 "pcalcl.l"
 {
                                 count();
 
@@ -1511,7 +1511,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 500 "src/pcalcl.l"
+#line 500 "pcalcl.l"
 {
                                 count();
 
@@ -1522,7 +1522,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 508 "src/pcalcl.l"
+#line 508 "pcalcl.l"
 {
                                 count();
 
@@ -1533,7 +1533,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 516 "src/pcalcl.l"
+#line 516 "pcalcl.l"
 {
                                 count();
 
@@ -1544,7 +1544,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 524 "src/pcalcl.l"
+#line 524 "pcalcl.l"
 {
                                 count();
 
@@ -1555,7 +1555,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 532 "src/pcalcl.l"
+#line 532 "pcalcl.l"
 ECHO;
 	YY_BREAK
 #line 1562 "pcalcl.c"
@@ -2563,7 +2563,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 532 "src/pcalcl.l"
+#line 532 "pcalcl.l"
 
 
 int     count(void)

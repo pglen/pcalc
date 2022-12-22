@@ -39,6 +39,8 @@
 #include "store.h"
 #include "print.h"
 
+int verbose = 0;
+
 static int     parse_comline(int argc, char *argv[]);
 
   int     fSilent = 0;
@@ -160,7 +162,7 @@ int     len;
 char    buff[512];
 
 FILE    *in_fp;
-char *version = "1.4";
+char *version = "1.5";
 
 static char *tmpfilenm =  "pcalc.tmp";
 
@@ -215,7 +217,8 @@ int     main(int argc, char *argv[])
             {
             strcat(buff, argv[cnt]); strcat(buff, " ");
             }
-        //printf("CMDLINE='%s'\n", buff);
+        if(verbose)
+            printf("CMDLINE='%s'\n", buff);
 
         len = strlen(buff);
         yyin = fopen(tmpfilenm, "w");
@@ -317,7 +320,7 @@ int     parse_comline(int argc, char *argv[])
                 case 'h' :
                     printf("\nPCALC written by Peter Glen\n");
                     printf("use: pcalc [options] [argstr [...]]\n");
-                    printf("     options: -s silent  -h help  -v version\n");
+                    printf("     options: -s silent  -h help  -v verbose -V version\n");
                     printf("     args:    \"items to calculate\"\n");
 
                     //ophelp();
@@ -332,6 +335,11 @@ int     parse_comline(int argc, char *argv[])
                     break;
 
                 case 'v' :
+                    verbose ++;
+                    j++;
+                    break;
+
+                case 'V' :
                     printf (
                 "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
                     exit(0);

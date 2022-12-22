@@ -1,6 +1,5 @@
 bin_PROGRAMS = pcalc
-pcalc_SOURCES = src/convert.c  src/help.c src/str.c src/funct.c src/pcalc.y src/pcalcl.l src/math.c src/print.c src/store.c src/symbol.c
-pcalc_CFLAGS = -I src
+pcalc_SOURCES = convert.c  help.c str.c funct.c pcalc.y pcalcl.l math.c print.c store.c symbol.c
 pcalc_TEXINFOS = pcalc.texi
 
 #AM_YFLAGS = -t -d -v

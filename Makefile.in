@@ -101,12 +101,15 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_pcalc_OBJECTS = convert.$(OBJEXT) help.$(OBJEXT) str.$(OBJEXT) \
-	funct.$(OBJEXT) pcalc.$(OBJEXT) pcalcl.$(OBJEXT) \
-	math.$(OBJEXT) print.$(OBJEXT) store.$(OBJEXT) \
-	symbol.$(OBJEXT)
+am_pcalc_OBJECTS = pcalc-convert.$(OBJEXT) pcalc-help.$(OBJEXT) \
+	pcalc-str.$(OBJEXT) pcalc-funct.$(OBJEXT) \
+	pcalc-pcalc.$(OBJEXT) pcalc-pcalcl.$(OBJEXT) \
+	pcalc-math.$(OBJEXT) pcalc-print.$(OBJEXT) \
+	pcalc-store.$(OBJEXT) pcalc-symbol.$(OBJEXT)
 pcalc_OBJECTS = $(am_pcalc_OBJECTS)
 pcalc_LDADD = $(LDADD)
+pcalc_LINK = $(CCLD) $(pcalc_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -122,11 +125,17 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/convert.Po ./$(DEPDIR)/funct.Po \
-	./$(DEPDIR)/help.Po ./$(DEPDIR)/math.Po ./$(DEPDIR)/pcalc.Po \
-	./$(DEPDIR)/pcalcl.Po ./$(DEPDIR)/print.Po \
-	./$(DEPDIR)/store.Po ./$(DEPDIR)/str.Po ./$(DEPDIR)/symbol.Po
+am__depfiles_remade = ./$(DEPDIR)/pcalc-convert.Po \
+	./$(DEPDIR)/pcalc-funct.Po ./$(DEPDIR)/pcalc-help.Po \
+	./$(DEPDIR)/pcalc-math.Po ./$(DEPDIR)/pcalc-pcalc.Po \
+	./$(DEPDIR)/pcalc-pcalcl.Po ./$(DEPDIR)/pcalc-print.Po \
+	./$(DEPDIR)/pcalc-store.Po ./$(DEPDIR)/pcalc-str.Po \
+	./$(DEPDIR)/pcalc-symbol.Po
 am__mv = mv -f
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_@AM_V@)
@@ -288,12 +297,14 @@ runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
+subdirs = @subdirs@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-pcalc_SOURCES = convert.c  help.c str.c funct.c pcalc.y pcalcl.l math.c print.c store.c symbol.c
+pcalc_SOURCES = src/convert.c  src/help.c src/str.c src/funct.c src/pcalc.y src/pcalcl.l src/math.c src/print.c src/store.c src/symbol.c
+pcalc_CFLAGS = -I src
 pcalc_TEXINFOS = pcalc.texi
 all: all-am
 
@@ -377,7 +388,7 @@ clean-binPROGRAMS:
 
 pcalc$(EXEEXT): $(pcalc_OBJECTS) $(pcalc_DEPENDENCIES) $(EXTRA_pcalc_DEPENDENCIES) 
 	@rm -f pcalc$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(pcalc_OBJECTS) $(pcalc_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(pcalc_LINK) $(pcalc_OBJECTS) $(pcalc_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -385,16 +396,16 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/convert.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/funct.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/help.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/math.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalcl.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/print.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/store.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/str.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/symbol.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-convert.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-funct.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-help.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-math.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-pcalc.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-pcalcl.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-print.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-store.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-str.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcalc-symbol.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -416,11 +427,161 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
+pcalc-convert.o: src/convert.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-convert.o -MD -MP -MF $(DEPDIR)/pcalc-convert.Tpo -c -o pcalc-convert.o `test -f 'src/convert.c' || echo '$(srcdir)/'`src/convert.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-convert.Tpo $(DEPDIR)/pcalc-convert.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/convert.c' object='pcalc-convert.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-convert.o `test -f 'src/convert.c' || echo '$(srcdir)/'`src/convert.c
+
+pcalc-convert.obj: src/convert.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-convert.obj -MD -MP -MF $(DEPDIR)/pcalc-convert.Tpo -c -o pcalc-convert.obj `if test -f 'src/convert.c'; then $(CYGPATH_W) 'src/convert.c'; else $(CYGPATH_W) '$(srcdir)/src/convert.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-convert.Tpo $(DEPDIR)/pcalc-convert.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/convert.c' object='pcalc-convert.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-convert.obj `if test -f 'src/convert.c'; then $(CYGPATH_W) 'src/convert.c'; else $(CYGPATH_W) '$(srcdir)/src/convert.c'; fi`
+
+pcalc-help.o: src/help.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-help.o -MD -MP -MF $(DEPDIR)/pcalc-help.Tpo -c -o pcalc-help.o `test -f 'src/help.c' || echo '$(srcdir)/'`src/help.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-help.Tpo $(DEPDIR)/pcalc-help.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/help.c' object='pcalc-help.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-help.o `test -f 'src/help.c' || echo '$(srcdir)/'`src/help.c
+
+pcalc-help.obj: src/help.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-help.obj -MD -MP -MF $(DEPDIR)/pcalc-help.Tpo -c -o pcalc-help.obj `if test -f 'src/help.c'; then $(CYGPATH_W) 'src/help.c'; else $(CYGPATH_W) '$(srcdir)/src/help.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-help.Tpo $(DEPDIR)/pcalc-help.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/help.c' object='pcalc-help.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-help.obj `if test -f 'src/help.c'; then $(CYGPATH_W) 'src/help.c'; else $(CYGPATH_W) '$(srcdir)/src/help.c'; fi`
+
+pcalc-str.o: src/str.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-str.o -MD -MP -MF $(DEPDIR)/pcalc-str.Tpo -c -o pcalc-str.o `test -f 'src/str.c' || echo '$(srcdir)/'`src/str.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-str.Tpo $(DEPDIR)/pcalc-str.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/str.c' object='pcalc-str.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-str.o `test -f 'src/str.c' || echo '$(srcdir)/'`src/str.c
+
+pcalc-str.obj: src/str.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-str.obj -MD -MP -MF $(DEPDIR)/pcalc-str.Tpo -c -o pcalc-str.obj `if test -f 'src/str.c'; then $(CYGPATH_W) 'src/str.c'; else $(CYGPATH_W) '$(srcdir)/src/str.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-str.Tpo $(DEPDIR)/pcalc-str.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/str.c' object='pcalc-str.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-str.obj `if test -f 'src/str.c'; then $(CYGPATH_W) 'src/str.c'; else $(CYGPATH_W) '$(srcdir)/src/str.c'; fi`
+
+pcalc-funct.o: src/funct.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-funct.o -MD -MP -MF $(DEPDIR)/pcalc-funct.Tpo -c -o pcalc-funct.o `test -f 'src/funct.c' || echo '$(srcdir)/'`src/funct.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-funct.Tpo $(DEPDIR)/pcalc-funct.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/funct.c' object='pcalc-funct.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-funct.o `test -f 'src/funct.c' || echo '$(srcdir)/'`src/funct.c
+
+pcalc-funct.obj: src/funct.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-funct.obj -MD -MP -MF $(DEPDIR)/pcalc-funct.Tpo -c -o pcalc-funct.obj `if test -f 'src/funct.c'; then $(CYGPATH_W) 'src/funct.c'; else $(CYGPATH_W) '$(srcdir)/src/funct.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-funct.Tpo $(DEPDIR)/pcalc-funct.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/funct.c' object='pcalc-funct.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-funct.obj `if test -f 'src/funct.c'; then $(CYGPATH_W) 'src/funct.c'; else $(CYGPATH_W) '$(srcdir)/src/funct.c'; fi`
+
+pcalc-pcalc.o: pcalc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-pcalc.o -MD -MP -MF $(DEPDIR)/pcalc-pcalc.Tpo -c -o pcalc-pcalc.o `test -f 'pcalc.c' || echo '$(srcdir)/'`pcalc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-pcalc.Tpo $(DEPDIR)/pcalc-pcalc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pcalc.c' object='pcalc-pcalc.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-pcalc.o `test -f 'pcalc.c' || echo '$(srcdir)/'`pcalc.c
+
+pcalc-pcalc.obj: pcalc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-pcalc.obj -MD -MP -MF $(DEPDIR)/pcalc-pcalc.Tpo -c -o pcalc-pcalc.obj `if test -f 'pcalc.c'; then $(CYGPATH_W) 'pcalc.c'; else $(CYGPATH_W) '$(srcdir)/pcalc.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-pcalc.Tpo $(DEPDIR)/pcalc-pcalc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pcalc.c' object='pcalc-pcalc.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-pcalc.obj `if test -f 'pcalc.c'; then $(CYGPATH_W) 'pcalc.c'; else $(CYGPATH_W) '$(srcdir)/pcalc.c'; fi`
+
+pcalc-pcalcl.o: pcalcl.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-pcalcl.o -MD -MP -MF $(DEPDIR)/pcalc-pcalcl.Tpo -c -o pcalc-pcalcl.o `test -f 'pcalcl.c' || echo '$(srcdir)/'`pcalcl.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-pcalcl.Tpo $(DEPDIR)/pcalc-pcalcl.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pcalcl.c' object='pcalc-pcalcl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-pcalcl.o `test -f 'pcalcl.c' || echo '$(srcdir)/'`pcalcl.c
+
+pcalc-pcalcl.obj: pcalcl.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-pcalcl.obj -MD -MP -MF $(DEPDIR)/pcalc-pcalcl.Tpo -c -o pcalc-pcalcl.obj `if test -f 'pcalcl.c'; then $(CYGPATH_W) 'pcalcl.c'; else $(CYGPATH_W) '$(srcdir)/pcalcl.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-pcalcl.Tpo $(DEPDIR)/pcalc-pcalcl.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pcalcl.c' object='pcalc-pcalcl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-pcalcl.obj `if test -f 'pcalcl.c'; then $(CYGPATH_W) 'pcalcl.c'; else $(CYGPATH_W) '$(srcdir)/pcalcl.c'; fi`
+
+pcalc-math.o: src/math.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-math.o -MD -MP -MF $(DEPDIR)/pcalc-math.Tpo -c -o pcalc-math.o `test -f 'src/math.c' || echo '$(srcdir)/'`src/math.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-math.Tpo $(DEPDIR)/pcalc-math.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/math.c' object='pcalc-math.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-math.o `test -f 'src/math.c' || echo '$(srcdir)/'`src/math.c
+
+pcalc-math.obj: src/math.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-math.obj -MD -MP -MF $(DEPDIR)/pcalc-math.Tpo -c -o pcalc-math.obj `if test -f 'src/math.c'; then $(CYGPATH_W) 'src/math.c'; else $(CYGPATH_W) '$(srcdir)/src/math.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-math.Tpo $(DEPDIR)/pcalc-math.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/math.c' object='pcalc-math.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-math.obj `if test -f 'src/math.c'; then $(CYGPATH_W) 'src/math.c'; else $(CYGPATH_W) '$(srcdir)/src/math.c'; fi`
+
+pcalc-print.o: src/print.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-print.o -MD -MP -MF $(DEPDIR)/pcalc-print.Tpo -c -o pcalc-print.o `test -f 'src/print.c' || echo '$(srcdir)/'`src/print.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-print.Tpo $(DEPDIR)/pcalc-print.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/print.c' object='pcalc-print.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-print.o `test -f 'src/print.c' || echo '$(srcdir)/'`src/print.c
+
+pcalc-print.obj: src/print.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-print.obj -MD -MP -MF $(DEPDIR)/pcalc-print.Tpo -c -o pcalc-print.obj `if test -f 'src/print.c'; then $(CYGPATH_W) 'src/print.c'; else $(CYGPATH_W) '$(srcdir)/src/print.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-print.Tpo $(DEPDIR)/pcalc-print.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/print.c' object='pcalc-print.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-print.obj `if test -f 'src/print.c'; then $(CYGPATH_W) 'src/print.c'; else $(CYGPATH_W) '$(srcdir)/src/print.c'; fi`
+
+pcalc-store.o: src/store.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-store.o -MD -MP -MF $(DEPDIR)/pcalc-store.Tpo -c -o pcalc-store.o `test -f 'src/store.c' || echo '$(srcdir)/'`src/store.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-store.Tpo $(DEPDIR)/pcalc-store.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/store.c' object='pcalc-store.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-store.o `test -f 'src/store.c' || echo '$(srcdir)/'`src/store.c
+
+pcalc-store.obj: src/store.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-store.obj -MD -MP -MF $(DEPDIR)/pcalc-store.Tpo -c -o pcalc-store.obj `if test -f 'src/store.c'; then $(CYGPATH_W) 'src/store.c'; else $(CYGPATH_W) '$(srcdir)/src/store.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-store.Tpo $(DEPDIR)/pcalc-store.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/store.c' object='pcalc-store.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-store.obj `if test -f 'src/store.c'; then $(CYGPATH_W) 'src/store.c'; else $(CYGPATH_W) '$(srcdir)/src/store.c'; fi`
+
+pcalc-symbol.o: src/symbol.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-symbol.o -MD -MP -MF $(DEPDIR)/pcalc-symbol.Tpo -c -o pcalc-symbol.o `test -f 'src/symbol.c' || echo '$(srcdir)/'`src/symbol.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-symbol.Tpo $(DEPDIR)/pcalc-symbol.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/symbol.c' object='pcalc-symbol.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-symbol.o `test -f 'src/symbol.c' || echo '$(srcdir)/'`src/symbol.c
+
+pcalc-symbol.obj: src/symbol.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -MT pcalc-symbol.obj -MD -MP -MF $(DEPDIR)/pcalc-symbol.Tpo -c -o pcalc-symbol.obj `if test -f 'src/symbol.c'; then $(CYGPATH_W) 'src/symbol.c'; else $(CYGPATH_W) '$(srcdir)/src/symbol.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pcalc-symbol.Tpo $(DEPDIR)/pcalc-symbol.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/symbol.c' object='pcalc-symbol.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pcalc_CFLAGS) $(CFLAGS) -c -o pcalc-symbol.obj `if test -f 'src/symbol.c'; then $(CYGPATH_W) 'src/symbol.c'; else $(CYGPATH_W) '$(srcdir)/src/symbol.c'; fi`
+
 .l.c:
 	$(AM_V_LEX)$(am__skiplex) $(SHELL) $(YLWRAP) $< $(LEX_OUTPUT_ROOT).c $@ -- $(LEXCOMPILE)
 
+pcalcl.c: src/pcalcl.l
+	$(AM_V_LEX) \
+	$(am__skiplex) \
+	$(SHELL) $(YLWRAP) `test -f 'src/pcalcl.l' || echo '$(srcdir)/'`src/pcalcl.l $(LEX_OUTPUT_ROOT).c pcalcl.c -- $(LEX) $(AM_LFLAGS) $(LFLAGS)
+
 .y.c:
 	$(AM_V_YACC)$(am__skipyacc) $(SHELL) $(YLWRAP) $< y.tab.c $@ y.tab.h `echo $@ | $(am__yacc_c2h)` y.output $*.output -- $(YACCCOMPILE)
+
+pcalc.c: src/pcalc.y
+	$(AM_V_YACC) \
+	$(am__skipyacc) \
+	$(SHELL) $(YLWRAP) `test -f 'src/pcalc.y' || echo '$(srcdir)/'`src/pcalc.y y.tab.c pcalc.c y.tab.h `echo pcalc.c | $(am__yacc_c2h)` y.output pcalc.output -- $(YACC) $(AM_YFLAGS) $(YFLAGS)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -697,16 +858,16 @@ clean-am: clean-binPROGRAMS clean-generic clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f ./$(DEPDIR)/convert.Po
-	-rm -f ./$(DEPDIR)/funct.Po
-	-rm -f ./$(DEPDIR)/help.Po
-	-rm -f ./$(DEPDIR)/math.Po
-	-rm -f ./$(DEPDIR)/pcalc.Po
-	-rm -f ./$(DEPDIR)/pcalcl.Po
-	-rm -f ./$(DEPDIR)/print.Po
-	-rm -f ./$(DEPDIR)/store.Po
-	-rm -f ./$(DEPDIR)/str.Po
-	-rm -f ./$(DEPDIR)/symbol.Po
+		-rm -f ./$(DEPDIR)/pcalc-convert.Po
+	-rm -f ./$(DEPDIR)/pcalc-funct.Po
+	-rm -f ./$(DEPDIR)/pcalc-help.Po
+	-rm -f ./$(DEPDIR)/pcalc-math.Po
+	-rm -f ./$(DEPDIR)/pcalc-pcalc.Po
+	-rm -f ./$(DEPDIR)/pcalc-pcalcl.Po
+	-rm -f ./$(DEPDIR)/pcalc-print.Po
+	-rm -f ./$(DEPDIR)/pcalc-store.Po
+	-rm -f ./$(DEPDIR)/pcalc-str.Po
+	-rm -f ./$(DEPDIR)/pcalc-symbol.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -754,16 +915,16 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f ./$(DEPDIR)/convert.Po
-	-rm -f ./$(DEPDIR)/funct.Po
-	-rm -f ./$(DEPDIR)/help.Po
-	-rm -f ./$(DEPDIR)/math.Po
-	-rm -f ./$(DEPDIR)/pcalc.Po
-	-rm -f ./$(DEPDIR)/pcalcl.Po
-	-rm -f ./$(DEPDIR)/print.Po
-	-rm -f ./$(DEPDIR)/store.Po
-	-rm -f ./$(DEPDIR)/str.Po
-	-rm -f ./$(DEPDIR)/symbol.Po
+		-rm -f ./$(DEPDIR)/pcalc-convert.Po
+	-rm -f ./$(DEPDIR)/pcalc-funct.Po
+	-rm -f ./$(DEPDIR)/pcalc-help.Po
+	-rm -f ./$(DEPDIR)/pcalc-math.Po
+	-rm -f ./$(DEPDIR)/pcalc-pcalc.Po
+	-rm -f ./$(DEPDIR)/pcalc-pcalcl.Po
+	-rm -f ./$(DEPDIR)/pcalc-print.Po
+	-rm -f ./$(DEPDIR)/pcalc-store.Po
+	-rm -f ./$(DEPDIR)/pcalc-str.Po
+	-rm -f ./$(DEPDIR)/pcalc-symbol.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

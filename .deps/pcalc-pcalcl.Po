@@ -62,7 +62,7 @@ pcalc-pcalcl.o: pcalcl.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h /usr/include/ctype.h \
- src/hocdecl.h src/symbol.h src/pcalc.h src/convert.h \
+ src/hocdecl.h src/symbol.h src/pcalc.h src/convert.h src/help.h \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -150,6 +150,7 @@ src/hocdecl.h:
 src/symbol.h:
 src/pcalc.h:
 src/convert.h:
+src/help.h:
 /usr/include/unistd.h:
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 /usr/include/x86_64-linux-gnu/bits/environments.h:

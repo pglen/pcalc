@@ -112,13 +112,12 @@
 
 //static int     parse_comline(int argc, char *argv[]);
 
-  int     fSilent = 0;
   extern  FILE * yyin ;
   static    char    work_str[128];
 
   
 
-#line 122 "pcalc.c"
+#line 121 "pcalc.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -202,14 +201,14 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 51 "src/pcalc.y"
+#line 50 "src/pcalc.y"
                                            /* stack object type    */
     int     intval ;                               /* actual value         */
     long    lngval ;                               /* actual value         */
     double  val ;                                  /* actual value         */
     Symbol  *sym ;                                 /* symbol table ptr     */
 
-#line 213 "pcalc.c"
+#line 212 "pcalc.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -651,10 +650,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    78,    78,    79,    80,    81,    82,    85,    88,    91,
-      95,    99,   103,   104,   105,   106,   107,   108,   111,   112,
-     116,   117,   118,   119,   120,   121,   122,   123,   124,   125,
-     126,   127,   128,   133,   134,   135,   136,   139,   140
+       0,    77,    77,    78,    79,    80,    81,    84,    87,    90,
+      94,    98,   102,   103,   104,   105,   106,   107,   110,   111,
+     115,   116,   117,   118,   119,   120,   121,   122,   123,   124,
+     125,   126,   127,   132,   133,   134,   135,   138,   139
 };
 #endif
 
@@ -1268,215 +1267,215 @@ yyreduce:
   switch (yyn)
     {
   case 6: /* list: list expr  */
-#line 82 "src/pcalc.y"
+#line 81 "src/pcalc.y"
                                     {
                                     print_num((yyvsp[0].val));
                                     }
-#line 1276 "pcalc.c"
+#line 1275 "pcalc.c"
     break;
 
   case 7: /* list: list STORE VAR  */
-#line 85 "src/pcalc.y"
+#line 84 "src/pcalc.y"
                                     {
                                     store("pcalc.var", (yyvsp[0].sym)->name, (yyvsp[0].sym)->u.val);
                                     }
-#line 1284 "pcalc.c"
+#line 1283 "pcalc.c"
     break;
 
   case 8: /* list: list STORE VAR TO STR  */
-#line 88 "src/pcalc.y"
+#line 87 "src/pcalc.y"
                                     {
                                     store((yyvsp[0].sym)->name, (yyvsp[-2].sym)->name, (yyvsp[-2].sym)->u.val);
                                     }
-#line 1292 "pcalc.c"
+#line 1291 "pcalc.c"
     break;
 
   case 9: /* list: list RESTORE VAR  */
-#line 91 "src/pcalc.y"
+#line 90 "src/pcalc.y"
                                     {
                                     restore("pcalc.var",
                                             (yyvsp[0].sym)->name, &((yyvsp[0].sym)->u.val));
                                     }
-#line 1301 "pcalc.c"
+#line 1300 "pcalc.c"
     break;
 
   case 10: /* list: list RESTORE VAR FROM STR  */
-#line 95 "src/pcalc.y"
+#line 94 "src/pcalc.y"
                                        {
                                     restore((yyvsp[0].sym)->name,
                                             (yyvsp[-2].sym)->name, &((yyvsp[-2].sym)->u.val));
                                     }
-#line 1310 "pcalc.c"
+#line 1309 "pcalc.c"
     break;
 
   case 11: /* list: list error  */
-#line 99 "src/pcalc.y"
+#line 98 "src/pcalc.y"
                                     { yyerrok ; }
-#line 1316 "pcalc.c"
+#line 1315 "pcalc.c"
     break;
 
   case 12: /* junk: IBUILTIN str  */
-#line 103 "src/pcalc.y"
+#line 102 "src/pcalc.y"
                                     { (*((yyvsp[-1].sym)->u.iptr))((yyvsp[0].sym)->u.str) ; }
-#line 1322 "pcalc.c"
+#line 1321 "pcalc.c"
     break;
 
   case 13: /* junk: IBUILTIN  */
-#line 104 "src/pcalc.y"
+#line 103 "src/pcalc.y"
                                     { }
-#line 1328 "pcalc.c"
+#line 1327 "pcalc.c"
     break;
 
   case 14: /* junk: IBUILTIN VAR  */
-#line 105 "src/pcalc.y"
+#line 104 "src/pcalc.y"
                                     { (*((yyvsp[-1].sym)->u.iptr))((yyvsp[0].sym)->u.val) ; }
-#line 1334 "pcalc.c"
+#line 1333 "pcalc.c"
     break;
 
   case 15: /* junk: IBUILTIN expr  */
-#line 106 "src/pcalc.y"
+#line 105 "src/pcalc.y"
                                     { (*((yyvsp[-1].sym)->u.iptr))((yyvsp[0].val)) ;       }
-#line 1340 "pcalc.c"
+#line 1339 "pcalc.c"
     break;
 
   case 16: /* junk: STR  */
-#line 107 "src/pcalc.y"
+#line 106 "src/pcalc.y"
                                     { printf("%s", (yyvsp[0].sym)->name);}
-#line 1346 "pcalc.c"
+#line 1345 "pcalc.c"
     break;
 
   case 17: /* junk: STRVAR  */
-#line 108 "src/pcalc.y"
+#line 107 "src/pcalc.y"
                                     { printf("%s", (yyvsp[0].sym)->u.str);}
-#line 1352 "pcalc.c"
+#line 1351 "pcalc.c"
     break;
 
   case 18: /* asgn: VAR '=' expr  */
-#line 111 "src/pcalc.y"
+#line 110 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].sym)->u.val = (yyvsp[0].val) ; (yyvsp[-2].sym)->type = VAR ; }
-#line 1358 "pcalc.c"
+#line 1357 "pcalc.c"
     break;
 
   case 19: /* asgn: STRVAR '=' STR  */
-#line 112 "src/pcalc.y"
+#line 111 "src/pcalc.y"
                                     { (yyvsp[-2].sym)->u.str = (yyvsp[0].sym)->name; (yyvsp[-2].sym)->type = STRVAR ;}
-#line 1364 "pcalc.c"
+#line 1363 "pcalc.c"
     break;
 
   case 21: /* expr: VAR  */
-#line 117 "src/pcalc.y"
+#line 116 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[0].sym)->u.val ; }
-#line 1370 "pcalc.c"
+#line 1369 "pcalc.c"
     break;
 
   case 22: /* expr: BUILTIN '(' expr ')'  */
-#line 118 "src/pcalc.y"
+#line 117 "src/pcalc.y"
                                     { (yyval.val) = (*((yyvsp[-3].sym)->u.ptr))((yyvsp[-1].val)) ; }
-#line 1376 "pcalc.c"
+#line 1375 "pcalc.c"
     break;
 
   case 23: /* expr: BUILTIN expr  */
-#line 119 "src/pcalc.y"
+#line 118 "src/pcalc.y"
                                     { (yyval.val) = (*((yyvsp[-1].sym)->u.ptr))((yyvsp[0].val)) ; }
-#line 1382 "pcalc.c"
+#line 1381 "pcalc.c"
     break;
 
   case 24: /* expr: expr '|' expr  */
-#line 120 "src/pcalc.y"
+#line 119 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) | (long)(yyvsp[0].val) ;}
-#line 1388 "pcalc.c"
+#line 1387 "pcalc.c"
     break;
 
   case 25: /* expr: expr '&' expr  */
-#line 121 "src/pcalc.y"
+#line 120 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) & (long)(yyvsp[0].val) ;}
-#line 1394 "pcalc.c"
+#line 1393 "pcalc.c"
     break;
 
   case 26: /* expr: expr LSHIFT expr  */
-#line 122 "src/pcalc.y"
+#line 121 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) << (long)(yyvsp[0].val) ; }
-#line 1400 "pcalc.c"
+#line 1399 "pcalc.c"
     break;
 
   case 27: /* expr: expr RSHIFT expr  */
-#line 123 "src/pcalc.y"
+#line 122 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) >> (long)(yyvsp[0].val) ; }
-#line 1406 "pcalc.c"
+#line 1405 "pcalc.c"
     break;
 
   case 28: /* expr: expr '+' expr  */
-#line 124 "src/pcalc.y"
+#line 123 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].val) + (yyvsp[0].val) ; }
-#line 1412 "pcalc.c"
+#line 1411 "pcalc.c"
     break;
 
   case 29: /* expr: expr '-' expr  */
-#line 125 "src/pcalc.y"
+#line 124 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].val) - (yyvsp[0].val) ; }
-#line 1418 "pcalc.c"
+#line 1417 "pcalc.c"
     break;
 
   case 30: /* expr: expr '*' expr  */
-#line 126 "src/pcalc.y"
+#line 125 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-2].val) * (yyvsp[0].val) ; }
-#line 1424 "pcalc.c"
+#line 1423 "pcalc.c"
     break;
 
   case 31: /* expr: expr '%' expr  */
-#line 127 "src/pcalc.y"
+#line 126 "src/pcalc.y"
                                     { (yyval.val) = (long)(yyvsp[-2].val) % (long)(yyvsp[0].val) ; }
-#line 1430 "pcalc.c"
+#line 1429 "pcalc.c"
     break;
 
   case 32: /* expr: expr '/' expr  */
-#line 128 "src/pcalc.y"
+#line 127 "src/pcalc.y"
                                     {
                                     if ((yyvsp[0].val) == 0.0)
                                     execerror("division by zero", "") ;
                                     (yyval.val) = (yyvsp[-2].val) / (yyvsp[0].val) ;
                                     }
-#line 1440 "pcalc.c"
+#line 1439 "pcalc.c"
     break;
 
   case 33: /* expr: expr '^' expr  */
-#line 133 "src/pcalc.y"
+#line 132 "src/pcalc.y"
                                     { (yyval.val) = Pow( (yyvsp[-2].val), (yyvsp[0].val)) ; }
-#line 1446 "pcalc.c"
+#line 1445 "pcalc.c"
     break;
 
   case 34: /* expr: expr POWER expr  */
-#line 134 "src/pcalc.y"
+#line 133 "src/pcalc.y"
                                     { (yyval.val) = Pow( (yyvsp[-2].val), (yyvsp[0].val)) ; }
-#line 1452 "pcalc.c"
+#line 1451 "pcalc.c"
     break;
 
   case 35: /* expr: '(' expr ')'  */
-#line 135 "src/pcalc.y"
+#line 134 "src/pcalc.y"
                                     { (yyval.val) = (yyvsp[-1].val) ; }
-#line 1458 "pcalc.c"
+#line 1457 "pcalc.c"
     break;
 
   case 36: /* expr: '-' expr  */
-#line 136 "src/pcalc.y"
+#line 135 "src/pcalc.y"
                                        { (yyval.val) = -(yyvsp[0].val) ; }
-#line 1464 "pcalc.c"
+#line 1463 "pcalc.c"
     break;
 
   case 37: /* str: STR  */
-#line 139 "src/pcalc.y"
+#line 138 "src/pcalc.y"
                                 { }
-#line 1470 "pcalc.c"
+#line 1469 "pcalc.c"
     break;
 
   case 38: /* str: STRVAR  */
-#line 140 "src/pcalc.y"
+#line 139 "src/pcalc.y"
                                 { }
-#line 1476 "pcalc.c"
+#line 1475 "pcalc.c"
     break;
 
 
-#line 1480 "pcalc.c"
+#line 1479 "pcalc.c"
 
       default: break;
     }
@@ -1669,7 +1668,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 143 "src/pcalc.y"
+#line 142 "src/pcalc.y"
 
 
 char    *version = "1.5";
@@ -1677,6 +1676,7 @@ char    *version = "1.5";
 int     pgdebug = 0;
 int     verbose = 0;
 int     gl_float = 0;
+int     fSilent = 0;
 
 /*-------------------------------------------------------------------------*/
 
@@ -1694,18 +1694,7 @@ int     parse_comline(int argc, char *argv[])
                 {
                 case 'H' :          /* help */
                 case 'h' :
-                    printf("\nPCALC written by Peter Glen\n");
-                    printf("Use: pcalc [options] [argstr [...]]\n");
-                    printf("\n");
-                    printf("  Options:      -s silent (minimal output)\n");
-                    printf("                -h help (this screen)\n");
-                    printf("                -v verbose (more output)\n");
-                    printf("                -V version\n");
-                    printf("                -f float as decimal (instead of sci. notation)\n");
-                    printf("\n");
-                    printf("argsstr:    Items to calculate; (in quotes if necessary)\n");
-                    printf("\n");
-                    help_help();
+                    mainhelp();
                     exit(0);
                     break;
 
@@ -1804,7 +1793,7 @@ int     main(int argc, char *argv[])
         yyin = fopen(&argv[1][1], "rt");
         if(!yyin)
             {
-            printf("Cannot open / find file.\n");
+            printf("Cannot open / find file '%s'\n", &argv[1][1]);
             exit(0);
             }
         }
@@ -1817,7 +1806,7 @@ int     main(int argc, char *argv[])
             {
             strcat(buff, argv[cnt]); strcat(buff, " ");
             }
-        if(verbose)
+        if(pgdebug)
             printf("CMDLINE='%s'\n", buff);
 
         len = strlen(buff);

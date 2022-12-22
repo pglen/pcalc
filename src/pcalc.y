@@ -42,7 +42,6 @@
 
 //static int     parse_comline(int argc, char *argv[]);
 
-  int     fSilent = 0;
   extern  FILE * yyin ;
   static    char    work_str[128];
 
@@ -147,6 +146,7 @@ char    *version = "1.5";
 int     pgdebug = 0;
 int     verbose = 0;
 int     gl_float = 0;
+int     fSilent = 0;
 
 /*-------------------------------------------------------------------------*/
 
@@ -164,18 +164,7 @@ int     parse_comline(int argc, char *argv[])
                 {
                 case 'H' :          /* help */
                 case 'h' :
-                    printf("\nPCALC written by Peter Glen\n");
-                    printf("Use: pcalc [options] [argstr [...]]\n");
-                    printf("\n");
-                    printf("  Options:      -s silent (minimal output)\n");
-                    printf("                -h help (this screen)\n");
-                    printf("                -v verbose (more output)\n");
-                    printf("                -V version\n");
-                    printf("                -f float as decimal (instead of sci. notation)\n");
-                    printf("\n");
-                    printf("argsstr:    Items to calculate; (in quotes if necessary)\n");
-                    printf("\n");
-                    help_help();
+                    mainhelp();
                     exit(0);
                     break;
 
@@ -274,7 +263,7 @@ int     main(int argc, char *argv[])
         yyin = fopen(&argv[1][1], "rt");
         if(!yyin)
             {
-            printf("Cannot open / find file.\n");
+            printf("Cannot open / find file '%s'\n", &argv[1][1]);
             exit(0);
             }
         }
@@ -287,7 +276,7 @@ int     main(int argc, char *argv[])
             {
             strcat(buff, argv[cnt]); strcat(buff, " ");
             }
-        if(verbose)
+        if(pgdebug)
             printf("CMDLINE='%s'\n", buff);
 
         len = strlen(buff);

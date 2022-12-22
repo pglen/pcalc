@@ -13,6 +13,7 @@
 #include "symbol.h"
 #include "pcalc.h"
 #include "convert.h"
+#include "help.h"
 
 //define TEST_PARSE
 #define RET_EACH
@@ -87,9 +88,10 @@ static  int     count(void);
                                 }
 
 0x[0-9a-fA-F]+[0-9a-fA-F]* {
-                                #ifdef TEST_PARSE
-                                printf(" Hexadec: [ %s ]\n", yytext);
-                                #endif
+                                //#ifdef TEST_PARSE
+                                if(pgdebug > 1)
+                                    printf(" Hexadec: [ %s ]\n", yytext);
+                                //#endif
 
                                 yylval.val = (double) hextol(yytext + 2);
 
@@ -99,9 +101,10 @@ static  int     count(void);
                                 }
 
 0y[01]+[01]*                   {
-                                #ifdef TEST_PARSE
-                                printf(" Binary:  [ %s ]\n", yytext);
-                                #endif
+                                //#ifdef TEST_PARSE
+                                if(pgdebug > 1)
+                                    printf(" Binary:  [ %s ]\n", yytext);
+                                //#endif
 
                                 yylval.val = bintol(yytext + 2);
 
@@ -123,9 +126,10 @@ static  int     count(void);
                                 }
 
 [0-9]+[0-9]*                   {
-                                #ifdef TEST_PARSE
-                                printf(" Decimal: [ %s ]\n", yytext);
-                                #endif
+                                //#ifdef TEST_PARSE
+                                if(pgdebug > 1)
+                                    printf(" Decimal: [ %s ]\n", yytext);
+                                //#endif
 
                                 yylval.val = (double) atol(yytext);
 
@@ -139,9 +143,10 @@ static  int     count(void);
 [0-9]+[dDeE][+-]?[0-9]+ |
 [0-9]+"."[0-9]*[dDeE][+-]?[0-9]+ |
 "."[0-9]+[dDeE][+-]?[0-9]+     {
-                                #ifdef TEST_PARSE
-                                printf(" Decimal: [ %s ]\n", yytext);
-                                #endif
+                                //#ifdef TEST_PARSE
+                                if(pgdebug > 1)
+                                    printf(" Decimal: [ %s ]\n", yytext);
+                                //#endif
 
                                 yylval.val = (double) atof(yytext);
 
@@ -153,9 +158,10 @@ static  int     count(void);
 \".*\"                          {
                                 Symbol *sp;
 
-                                #ifdef TEST_PARSE
-                                printf(" string: [ %s ]\n", yytext);
-                                #endif
+                                //#ifdef TEST_PARSE
+                                if(pgdebug > 1)
+                                    printf(" string: [ %s ]\n", yytext);
+                                //#endif
 
                                 sp  = lookup_sym(yytext);
 
@@ -182,9 +188,10 @@ static  int     count(void);
 
 
 \/\/.*                          {
-                                #ifdef TEST_PARSE
-                                printf(" Comment: [ %s ]\n", yytext);
-                                #endif
+                                //#ifdef TEST_PARSE
+                                if(pgdebug > 2)
+                                    printf(" Comment: [ %s ]\n", yytext);
+                                //#endif
 
                                 #ifdef RET_EACH
                                 //return(COMM);
@@ -206,9 +213,10 @@ static  int     count(void);
 
                                     if(sp->type == BUILTIN)
                                         {
-                                        #ifdef TEST_PARSE
-                                        printf("Bultin: %s\n", sp->name );
-                                        #endif
+                                        //#ifdef TEST_PARSE
+                                        if(pgdebug > 1)
+                                            printf("Bultin: %s\n", sp->name );
+                                        //#endif
 
                                         #ifdef RET_EACH
                                         return(BUILTIN);
@@ -216,9 +224,10 @@ static  int     count(void);
                                         }
                                     else if(sp->type == IBUILTIN)
                                         {
-                                        #ifdef TEST_PARSE
-                                        printf("Bultin: %s\n", sp->name );
-                                        #endif
+                                        //#ifdef TEST_PARSE
+                                        if(pgdebug > 1)
+                                            printf("Bultin: %s\n", sp->name );
+                                        //#endif
 
                                         #ifdef RET_EACH
                                         return(IBUILTIN);
@@ -226,9 +235,10 @@ static  int     count(void);
                                         }
                                     else if(sp->type == VAR)
                                         {
-                                        #ifdef TEST_PARSE
-                                        printf("Var: %s\n", sp->name );
-                                        #endif
+                                        //#ifdef TEST_PARSE
+                                        if(pgdebug > 1)
+                                            printf("Var: %s\n", sp->name );
+                                        //#endif
 
                                         #ifdef RET_EACH
                                         return(VAR);

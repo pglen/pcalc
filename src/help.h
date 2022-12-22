@@ -53,7 +53,7 @@ int     mainhelp();
 extern  int     pgdebug;
 extern  int     verbose;
 extern  int     gl_float;
-
+extern  int     fSilent;
 
 #undef  EXTERN
 #undef  EXPORT

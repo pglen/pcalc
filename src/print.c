@@ -95,11 +95,17 @@ void    print_num(double var)
                 else
                     break;
                 }
-            printf("\t%-s\t0x%-8lx\t0y%s\n" , tmp, (long)var, work_str);
+            if(fSilent)
+                printf("\t%-s\n" , tmp);
+            else
+                printf("\t%-s\t0x%-8lx\t0y%s\n" , tmp, (long)var, work_str);
             }
         else
             {
-            printf("\t%-8.8g\t0x%-8lx\t0y%s\n" , var, (long)var, work_str);
+            if(fSilent)
+                printf("\t%-8.8g\n" , var);
+            else
+                printf("\t%-8.8g\t0x%-8lx\t0y%s\n" , var, (long)var, work_str);
             }
         }
 }

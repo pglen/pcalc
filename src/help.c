@@ -145,16 +145,35 @@ Built in variables:\n\
 }
 
 
+int     mainhelp()
+
+{
+    printf("\nPCALC written by Peter Glen\n");
+    printf("Use: pcalc [options] [argstr [...]]\n");
+    printf("\n");
+    printf("  Options:      -s silent (minimal output)\n");
+    printf("                -h help (this screen)\n");
+    printf("                -v verbose (more output)\n");
+    printf("                -V version\n");
+    printf("                -f float as decimal (instead of sci. notation)\n");
+    printf("\n");
+    printf("argsstr:    Items to calculate; (in quotes if necessary)\n");
+    printf("argsstr:    Items begin with '@' interpreted as files (ex: @myfile.txt)\n");
+    printf("\n");
+    help_help();
+}
+
+
 int     help_help(void)
 
 {
-
         printf("\
 For functions type pcalc f\n\
 For controls  type pcalc l\n\
 For operators type pcalc o\n\
 For constants type pcalc c\n\
 \n\
+pcalc -h for usage
 ");
 
 }

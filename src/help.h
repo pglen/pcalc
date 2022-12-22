@@ -48,6 +48,7 @@ int     ophelp(void);
 int     conshelp(void);
 int     cbhelp(void);
 int     help_help(void);
+int     mainhelp();
 
 extern  int     pgdebug;
 extern  int     verbose;

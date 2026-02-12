@@ -115,7 +115,7 @@
   extern  FILE * yyin ;
   static    char    work_str[128];
 
-  
+
 
 #line 121 "pcalc.c"
 
@@ -1671,7 +1671,8 @@ yyreturnlab:
 #line 142 "src/pcalc.y"
 
 
-char    *version = "1.5";
+char    *version = "1.6";
+char    *verdate = "Thu 12.Feb.2026";
 
 int     pgdebug = 0;
 int     verbose = 0;
@@ -1722,7 +1723,8 @@ int     parse_comline(int argc, char *argv[])
 
                 case 'V' :
                     printf (
-                "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
+                "Programmer's calculator by Peter Glen. Version %s (%s)\n",
+                                version, verdate);
                     exit(0);
                     break;
 
@@ -1766,7 +1768,8 @@ int     main(int argc, char *argv[])
 
     if(!argv[1])
         {
-        printf ("\nProgrammer's calculator by Peter Glen. Version %s\n\n", version);
+        printf ("Programmer's calculator by Peter Glen. Version %s (%s)\n\n",
+                            version, verdate);
         help_help();
         exit(0);
         }
@@ -1846,7 +1849,6 @@ int     main(int argc, char *argv[])
 
     return 0 ;
 }
-
 
 /*-------------------------------------------------------------------------
 **  EXECERROR

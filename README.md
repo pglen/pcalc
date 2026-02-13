@@ -4,7 +4,7 @@
 
  Resurrected this because it may be useful. For instance, in embedded programming it
 is nice to see results from mixed operations, - for example - like '0xA0000+27*2'.
-(The address of 27th char in the framebuffer)
+(The address of 27th char in the frame buffer)
 
  For some, it may  serve as a good introduction to LEX/YACC.
 
@@ -16,22 +16,22 @@ enough to maintain a nice farm. Would be ice to have a side/guest house there to
 
 ## Tech:
 
-      Operators line in most languages. Precedence like in 'C'.
+      Operators are like in most languages. Precedence like in 'C'.
 
  Operator summary:
 
-        right  assotiation:     '='         ASSIGNMENT\n\
-        left   assotiation:     or  and     BINARY OR / BINARY AND\n\
-        left   assotiation:     '&' '|'     BINARY And / Binary Or OR\n\
-        left   assotiation:     '+' '-'     ADDITION/SUBTRUCTION\n\
-        left   assotiation:     '<<' '>>'   SHIFT LEFT / RIGHT (Integer)\n\
-        left   assotiation:     '*' '/' '%' MULTIPLY/DIVIDE/MODULUS\n\
-        left   assotiation:     '-'         UNARY MINUS\n\
-        right  assotiation:     '^'         EXPONENTATION\n\
+        right  association:     '='         ASSIGNMENT\n\
+        left   association:     or  and     LOGICAL OR / AND\n\
+        left   association:     '&' '|'     BINARY AND / OR\n\
+        left   association:     '+' '-'     ADDITION/SUBTRACTION\n\
+        left   association:     '<<' '>>'   SHIFT LEFT / RIGHT (Integer)\n\
+        left   association:     '*' '/' '%' MULTIPLY/DIVIDE/MODULUS\n\
+        left   association:     '-'         UNARY MINUS\n\
+        right  association:     '^'         EXPONENTIATION\n\
 
  Math functions summary:
 
-        SIN         math sinus              COS        math cos
+        SIN         math sin                COS        math cos
         ATAN        math atan               LOG        math log
         LOG10       math log10              EXP        math exp
         SQRT        math sqrt               INT        math int
@@ -46,7 +46,7 @@ enough to maintain a nice farm. Would be ice to have a side/guest house there to
         PO2KG       converting mass        -> pounds to kilogram
         KG2PO       converting mass        -> kilogram to pounds
 
- Constans summary:
+ Constants summary:
 
         PI      3.14159265358979323846
         E       2.71828182845904523536

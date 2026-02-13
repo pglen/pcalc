@@ -119,7 +119,7 @@ static int     parse_comline(int argc, char *argv[]);
 
   static    char    work_str[128];
 
-  
+
 
 #line 125 "pcalc.c"
 
@@ -1692,7 +1692,8 @@ int     len;
 char    buff[512];
 
 FILE    *in_fp;
-char *version = "1.5";
+char *version = "1.6";
+char *verdate = "Fri 13.Feb.2026";
 
 static char *tmpfilenm =  "pcalc.tmp";
 
@@ -1871,7 +1872,8 @@ int     parse_comline(int argc, char *argv[])
 
                 case 'V' :
                     printf (
-                "\nProgrammer's calculator by Peter Glen. Version %s\n", version);
+                "\nProgrammer's calculator by Peter Glen. Version %s %d\n",
+                                    version, verdate);
                     exit(0);
                     break;
 

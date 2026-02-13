@@ -1,4 +1,4 @@
-#                Programmer's Calculator  (Ver 1.5)
+#                Programmer's Calculator  (Ver 1.6)
 
 ##  Arithmetic in base 16, base 10, base 2 (hex, dec, bin)
 
@@ -21,7 +21,8 @@ enough to maintain a nice farm. Would be ice to have a side/guest house there to
  Operator summary:
 
         right  assotiation:     '='         ASSIGNMENT\n\
-        left   assotiation:     or  and     BINARY OR/BINARY AND\n\
+        left   assotiation:     or  and     BINARY OR / BINARY AND\n\
+        left   assotiation:     '&' '|'     BINARY And / Binary Or OR\n\
         left   assotiation:     '+' '-'     ADDITION/SUBTRUCTION\n\
         left   assotiation:     '<<' '>>'   SHIFT LEFT / RIGHT (Integer)\n\
         left   assotiation:     '*' '/' '%' MULTIPLY/DIVIDE/MODULUS\n\
